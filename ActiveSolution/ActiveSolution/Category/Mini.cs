@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ActiveSolution.Category
 {
-    class SmallCar : ICarCategory
+    public class Mini : ICarCategory
     {
         public decimal DayPriceFactor { get { return 1.0M; } }
         
