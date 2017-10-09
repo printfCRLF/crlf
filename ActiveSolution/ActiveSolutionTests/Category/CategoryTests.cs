@@ -1,12 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ActiveSolution.Category;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ActiveSolution.Vehicle.Category;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ActiveSolution.Category.Tests
+namespace ActiveSolutionTests.Category
 {
     [TestClass()]
     public class CategoryTests

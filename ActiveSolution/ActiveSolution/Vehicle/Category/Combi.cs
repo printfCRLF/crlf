@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActiveSolution.Category
+﻿namespace ActiveSolution.Vehicle.Category
 {
-    public class Combi : ICarCategory
+    public class Combi : ICategory
     {
         public decimal DayPriceFactor { get { return 1.3M; } }
         

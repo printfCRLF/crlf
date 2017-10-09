@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActiveSolution.Category
+﻿namespace ActiveSolution.Vehicle.Category
 {
-    interface ICarCategory
+    public interface ICategory
     {
         decimal DayPriceFactor { get; }
 

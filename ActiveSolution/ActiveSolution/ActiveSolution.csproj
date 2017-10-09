@@ -42,12 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category\ICarCategory.cs" />
-    <Compile Include="Category\Combi.cs" />
-    <Compile Include="Category\Truck.cs" />
-    <Compile Include="Category\Mini.cs" />
+    <Compile Include="Vehicle\Category\ICategory.cs" />
+    <Compile Include="Vehicle\Category\Combi.cs" />
+    <Compile Include="Vehicle\Category\Truck.cs" />
+    <Compile Include="Vehicle\Category\Mini.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vehicle\Car.cs" />
+    <Compile Include="Workshop\ICarRepository.cs" />
+    <Compile Include="Workshop\Registry.cs" />
+    <Compile Include="Workshop\Workshop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
