@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category\ICarCategory.cs" />
+    <Compile Include="Category\Combi.cs" />
+    <Compile Include="Category\Truck.cs" />
+    <Compile Include="Category\SmallCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
