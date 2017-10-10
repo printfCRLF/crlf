@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/ActiveSolution/ActiveSolutionTests/Vehicle/CategoryTests.cs~HEAD
+/ActiveSolution/ActiveSolutionTests/Vehicle/CategoryTests.cs~9ce8f73... v1 complete.
