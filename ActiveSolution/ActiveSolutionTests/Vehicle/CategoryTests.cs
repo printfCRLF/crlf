@@ -1,7 +1,7 @@
 ﻿using ActiveSolution.Vehicle.Category;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ActiveSolutionTests.Category
+namespace ActiveSolutionTests.Vehicle
 {
     [TestClass()]
     public class CategoryTests

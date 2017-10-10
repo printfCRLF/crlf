@@ -51,8 +51,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Category\CategoryTests.cs" />
+    <Compile Include="Vehicle\CategoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workshop\InMemoryCarRepository.cs" />
+    <Compile Include="Workshop\InMemoryRegistryRepository.cs" />
+    <Compile Include="Workshop\WorkshopTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActiveSolution\ActiveSolution.csproj">

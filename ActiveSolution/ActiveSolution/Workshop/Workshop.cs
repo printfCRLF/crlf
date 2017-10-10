@@ -11,51 +11,49 @@ namespace ActiveSolution.Workshop
     public class Workshop
     {
         private readonly IEnumerable<Car> _cars;
-        private readonly IList<Registry> _registries = new List<Registry>();
-        private const decimal PricePerDay = 200M;
-        private const decimal PricePerKilometer = 5M;
+        private readonly IRegistryRepository _registryRepository;
+        public decimal PricePerDay => 200M;
+        public decimal PricePerKilometer => 5M;
 
-        public Workshop(ICarRepository carRepository)
+        public Workshop(IEnumerable<Car> cars, IRegistryRepository registryRepository)
         {
-            _cars = carRepository.Cars();
+            _cars = cars;
+            _registryRepository = registryRepository;
         }
 
-        public bool Fetch(Guid bookingNumber, string socialSecurityNumber, ICategory category)
+        public Car Fetch(Guid bookingNumber, string socialSecurityNumber, ICategory category, DateTime fetchDateTime)
         {
-            var cars = from c in _cars
-                      where c.Category == category && c.IsAvailable;
+            var car = _cars.FirstOrDefault(c => c.Category.GetType() == category.GetType() && c.IsAvailable);
 
-            if (!cars.Any())
+            if (car == null)
             {
-                return false;
+                return null;
             }
-
-            var car = cars.First();
             var reg = new Registry
             {
                 BookingNumber = bookingNumber,
                 Vin = car.Vin,
                 SocialSecurityNumber = socialSecurityNumber,
-                FetchDateTime = DateTime.Now,
+                FetchDateTime = fetchDateTime,
                 DistanceDriven = car.DistanceDriven
             };
 
             car.IsAvailable = false;
-            _registries.Add(reg);
-            return true;
+            _registryRepository.Add(reg);
+            return car;
         }
 
-        public decimal Return(Guid bookingNumber)
+        public decimal Return(Guid bookingNumber, DateTime returnDateTime)
         {
-            var reg = _registries.First(r => r.BookingNumber == bookingNumber);
-            reg.ReturnDateTime = DateTime.Now;
+            var reg = _registryRepository.Find(bookingNumber);
+            reg.ReturnDateTime = returnDateTime;
 
             var car = _cars.First(c => c.Vin == reg.Vin);
             car.IsAvailable = true;
-            
+
             var distanceDriven = car.DistanceDriven - reg.DistanceDriven;
-            var timeDriven = reg.ReturnDateTime - reg.FetchDateTime;
-            var price = car.Category.CalculatePrice(PricePerDay, (int)timeDriven.TotalDays, PricePerKilometer, distanceDriven);
+            var timeDriven = (int)Math.Ceiling((reg.ReturnDateTime - reg.FetchDateTime).TotalDays);
+            var price = car.Category.CalculatePrice(PricePerDay, timeDriven, PricePerKilometer, distanceDriven);
 
             return price;
         }
