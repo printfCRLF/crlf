@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ActiveSolution.Vehicle;
-using ActiveSolution.Vehicle.Category;
+using ActiveSolution.Vehicle.Categorization;
 
 namespace ActiveSolution.Workshop
 {
@@ -12,7 +12,7 @@ namespace ActiveSolution.Workshop
     {
         IEnumerable<Car> Cars { get; }
 
-        Car FindAvailable(ICategory category);
+        Car FindAvailable(Category category);
 
         Car Find(Func<Car, bool> predicate);
     }

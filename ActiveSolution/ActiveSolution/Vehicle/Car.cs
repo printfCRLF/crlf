@@ -1,15 +1,22 @@
-﻿using ActiveSolution.Vehicle.Category;
+﻿
+using ActiveSolution.Vehicle.Categorization;
 
 namespace ActiveSolution.Vehicle
 {
-    public class Car
+    public abstract class Car
     {
         /// <summary>
         /// Registreringsnummer
         /// </summary>
         public string Vin { get; set; }
 
-        public ICategory Category { get; set; }
+        public virtual Category Category { get; }
+
+        public virtual decimal CalculatePrice(decimal pricePerDay, int days, decimal pricePerKilometer,
+            decimal kilometers)
+        {
+            return 0.0M;
+        }
 
         /// <summary>
         /// Mätarställning

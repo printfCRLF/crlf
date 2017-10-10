@@ -1,4 +1,5 @@
-﻿using ActiveSolution.Vehicle.Category;
+﻿using ActiveSolution.Vehicle;
+using ActiveSolution.Vehicle.Categorization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActiveSolutionTests.Vehicle

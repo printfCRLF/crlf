@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ActiveSolution.Vehicle;
-using ActiveSolution.Vehicle.Category;
+using ActiveSolution.Vehicle.Categorization;
 
 namespace ActiveSolution.Workshop
 {
@@ -22,7 +22,7 @@ namespace ActiveSolution.Workshop
             _registryRepository = registryRepository;
         }
 
-        public Car Fetch(Guid bookingNumber, string socialSecurityNumber, ICategory category, DateTime fetchDateTime)
+        public Car Fetch(Guid bookingNumber, string socialSecurityNumber, Category category, DateTime fetchDateTime)
         {
             var car = _carRepository.FindAvailable(category);
             if (car == null)
@@ -53,7 +53,7 @@ namespace ActiveSolution.Workshop
 
             var distanceDriven = car.DistanceDriven - reg.DistanceDriven;
             var timeDriven = (int)Math.Ceiling((reg.ReturnDateTime - reg.FetchDateTime).TotalDays);
-            var price = car.Category.CalculatePrice(PricePerDay, timeDriven, PricePerKilometer, distanceDriven);
+            var price = car.CalculatePrice(PricePerDay, timeDriven, PricePerKilometer, distanceDriven);
 
             return price;
         }

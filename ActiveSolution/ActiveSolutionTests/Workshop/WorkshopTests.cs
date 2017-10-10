@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using ActiveSolution.Vehicle.Category;
 using ActiveSolution.Workshop;
+using ActiveSolution.Vehicle.Categorization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActiveSolutionTests.Workshop
@@ -25,7 +25,7 @@ namespace ActiveSolutionTests.Workshop
         public void MiniIsDrivenForHalfADay()
         {
             var bookingNumber = Guid.NewGuid();
-            var car = _workshop.Fetch(bookingNumber, "861234-1234", new Mini(), new DateTime(2017, 10, 1, 7, 30, 0));
+            var car = _workshop.Fetch(bookingNumber, "861234-1234", Category.Mini, new DateTime(2017, 10, 1, 7, 30, 0));
             Assert.AreEqual(false, car.IsAvailable);
 
             var startDistance = car.DistanceDriven;
@@ -41,7 +41,7 @@ namespace ActiveSolutionTests.Workshop
         public void TruckIsDrivenForTwoDays()
         {
             var bookingNumber = Guid.NewGuid();
-            var car = _workshop.Fetch(bookingNumber, "001122-6677", new Truck(), new DateTime(2017, 10, 1, 7, 30, 0));
+            var car = _workshop.Fetch(bookingNumber, "001122-6677", Category.Truck, new DateTime(2017, 10, 1, 7, 30, 0));
             car.Drive(151.1M);
 
             _registryRepository.Find(bookingNumber);
