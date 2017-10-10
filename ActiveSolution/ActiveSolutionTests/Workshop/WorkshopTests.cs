@@ -18,7 +18,7 @@ namespace ActiveSolutionTests.Workshop
         {
             _carRepository = new InMemoryCarRepository();
             _registryRepository = new InMemoryRegistryRepository();
-            _workshop = new ActiveSolution.Workshop.Workshop(_carRepository.Cars, _registryRepository);
+            _workshop = new ActiveSolution.Workshop.Workshop(_carRepository, _registryRepository);
         }
 
         [TestMethod()]

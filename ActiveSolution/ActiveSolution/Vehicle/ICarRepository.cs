@@ -12,5 +12,8 @@ namespace ActiveSolution.Workshop
     {
         IEnumerable<Car> Cars { get; }
 
+        Car FindAvailable(ICategory category);
+
+        Car Find(Func<Car, bool> predicate);
     }
 }

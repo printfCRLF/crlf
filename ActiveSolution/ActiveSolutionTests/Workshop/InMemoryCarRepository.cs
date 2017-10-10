@@ -19,7 +19,16 @@ namespace ActiveSolutionTests.Workshop
             new Car {Vin = "1004", Category = new Combi(), DistanceDriven = 200M, IsAvailable = false},
             new Car {Vin = "1005", Category = new Truck(), DistanceDriven = 200M, IsAvailable = true}
         };
-
         public IEnumerable<Car> Cars => _cars;
+
+        public Car FindAvailable(ICategory category)
+        {
+            return _cars.First(c => c.Category.GetType() == category.GetType());
+        }
+
+        public Car Find(Func<Car, bool> predicate)
+        {
+            return _cars.First(predicate);
+        }
     }
 }

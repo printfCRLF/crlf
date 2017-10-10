@@ -10,21 +10,21 @@ namespace ActiveSolution.Workshop
 {
     public class Workshop
     {
-        private readonly IEnumerable<Car> _cars;
+        private ICarRepository _carRepository;
         private readonly IRegistryRepository _registryRepository;
+        
         public decimal PricePerDay => 200M;
         public decimal PricePerKilometer => 5M;
 
-        public Workshop(IEnumerable<Car> cars, IRegistryRepository registryRepository)
+        public Workshop(ICarRepository carRepository, IRegistryRepository registryRepository)
         {
-            _cars = cars;
+            _carRepository = carRepository;
             _registryRepository = registryRepository;
         }
 
         public Car Fetch(Guid bookingNumber, string socialSecurityNumber, ICategory category, DateTime fetchDateTime)
         {
-            var car = _cars.FirstOrDefault(c => c.Category.GetType() == category.GetType() && c.IsAvailable);
-
+            var car = _carRepository.FindAvailable(category);
             if (car == null)
             {
                 return null;
@@ -48,7 +48,7 @@ namespace ActiveSolution.Workshop
             var reg = _registryRepository.Find(bookingNumber);
             reg.ReturnDateTime = returnDateTime;
 
-            var car = _cars.First(c => c.Vin == reg.Vin);
+            var car = _carRepository.Find(c => c.Vin == reg.Vin);
             car.IsAvailable = true;
 
             var distanceDriven = car.DistanceDriven - reg.DistanceDriven;
