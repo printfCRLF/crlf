@@ -1,0 +1,30 @@
+
+
+<div>
+  <label>Id:
+    <input [(ngModel)]="instrument.id" placeholder="999"/>
+  </label>
+  <label>Name:
+    <input [(ngModel)]="instrument.name" placeholder="IBM"/>
+  </label>
+
+  <label>Issuer:
+    <input [(ngModel)]="instrument.issuer" placeholder="Asea Brown Boveri"/>
+  </label>
+
+  <label>Id:
+    <input [(ngModel)]="instrument.currency" placeholder="SEK"/>
+  </label>
+</div>
+<button>Add</button>
+
+<ul>
+  <li *ngFor="let instrument of instruments">
+    <div>
+      <span>Id: </span> {{instrument.id}}
+      <span>Name: </span> {{instrument.name}}
+      <span>Issuer: </span> {{instrument.issuer}}
+      <span>Currency: </span> {{instrument.currency}}
+    </div>
+  </li>
+</ul>
