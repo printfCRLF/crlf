@@ -7,14 +7,14 @@ import { InstrumentsComponent } from './instruments/instruments.component';
 import { InstrumentService } from './instruments/instrument.service';
 import { DealComponent } from './deal/deal.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfoliosComponent } from './portfolios/portfolios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InstrumentsComponent,
     DealComponent,
-    PortfolioComponent
+    PortfoliosComponent
   ],
   imports: [
     BrowserModule,
