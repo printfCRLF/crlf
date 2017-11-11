@@ -1,0 +1,14 @@
+<div *ngIf="instrument">
+  <div><span>{{instrument.name}}</span></div>
+  <div>
+    <button>Sell</button>
+    <button>Buy</button>
+  </div>
+  <div><span>Price: </span>{{deal.price}} {{instrument.currency}}</div>
+  <div>
+    <label>Size:
+      <input [(ngModel)]="deal.size" placeholder="1"/>
+    </label>
+  </div>
+  <button (click)="placeDeal()">Place deal</button>
+</div>

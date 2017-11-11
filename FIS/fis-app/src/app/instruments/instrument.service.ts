@@ -5,13 +5,13 @@ import { Instrument } from './instrument';
 @Injectable()
 export class InstrumentService {
 
-  instruments: Instrument[];
+  instruments: Instrument[] = [];
 
   constructor() {
-    this.instruments.push(new Instrument(100, 'IBM', 'NYSE', 'USD'));
-    this.instruments.push(new Instrument(101, 'MSFT', 'NYSE', 'USD'));
-    this.instruments.push(new Instrument(201, 'ABB', 'OMX', 'SEK'));
-    this.instruments.push(new Instrument(202, 'ERIC', 'OMX', 'SEK'));
+    this.instruments.push(new Instrument(100, 'IBM', 'Asea Brown Boveri', 'USD'));
+    this.instruments.push(new Instrument(101, 'MSFT', 'Goldman Sachs', 'USD'));
+    this.instruments.push(new Instrument(201, 'ABB', 'Lundbergs företag', 'SEK'));
+    this.instruments.push(new Instrument(202, 'ERIC', 'Lundbergs företag', 'SEK'));
   }
 
   get(): Instrument[] {

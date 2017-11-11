@@ -15,12 +15,22 @@ export class InstrumentsComponent implements OnInit {
 
   instruments: Instrument[];
 
+  selectedInstrument: Instrument;
+
   constructor(private instrumentService: InstrumentService ) {
 
   }
 
   getInstruments(): void {
     this.instruments = this.instrumentService.get();
+  }
+
+  add(instrument: Instrument): void {
+    this.instrumentService.add(instrument);
+  }
+
+  onSelect(instrument: Instrument): void {
+    this.selectedInstrument = instrument;
   }
 
   ngOnInit() {

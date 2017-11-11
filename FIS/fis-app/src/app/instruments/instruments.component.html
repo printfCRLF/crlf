@@ -16,10 +16,12 @@
     <input [(ngModel)]="instrument.currency" placeholder="SEK"/>
   </label>
 </div>
-<button>Add</button>
+<button (click)="add(instrument)">Add</button>
 
 <ul>
-  <li *ngFor="let instrument of instruments">
+  <li *ngFor="let instrument of instruments"
+      [class.selected]="instrument === selectedInstrument"
+      (click)="onSelect(instrument)">
     <div>
       <span>Id: </span> {{instrument.id}}
       <span>Name: </span> {{instrument.name}}
@@ -28,3 +30,6 @@
     </div>
   </li>
 </ul>
+
+
+<app-deal [instrument]="selectedInstrument"></app-deal>
