@@ -20,5 +20,7 @@ export class PortfoliosComponent implements OnInit {
     return this.portfolioService.portfolios;
   }
 
+
+
 }
 

@@ -2,17 +2,43 @@
   portfolios works!
 </p>
 <div>
-  <ul>
-    <!--<li *ngFor="let kv of portfolios() | keys">-->
-      <!--<span>-->
-        <!--Key: {{kv.key}}, value: {{kv.value}}-->
-      <!--</span>-->
-    <!--</li>-->
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th colspan="2">Instrument</th>
+        <th colspan="3">Position</th>
+        <th colspan="3">Profit / Loss</th>
+      </tr>
+      <tr>
+        <th>Portfolio</th>
+        <th>Curr</th>
+        <th>Issuer</th>
+        <th>Price</th>
+        <th>Size</th>
+        <th>Value</th>
+        <th>TPL</th>
+        <th>UPL</th>
+        <th>RPL</th>
+      </tr>
+    </thead>
 
-    <li *ngFor="let kv of portfolios() | keyValue">
-      <span>
-        {{kv.key}} - {{kv.value.positions.length}}
-      </span>
-    </li>
-  </ul>
+    <tbody>
+
+      <ng-container *ngFor="let kv of portfolios() | keyValue">
+        <tr>
+          <td>{{kv.key}}</td>
+        </tr>
+        <tr *ngFor="let position of kv.value.positions">
+          <td>{{position.instrument.name}}</td>
+          <td>{{position.instrument.currency}}</td>
+          <td>{{position.instrument.issuer}}</td>
+          <td>{{position.price}}</td>
+          <td>{{position.quantity}}</td>
+          <td>{{position.price * position.quantity}} </td>
+        </tr>
+      </ng-container>
+
+    </tbody>
+  </table>
 </div>
