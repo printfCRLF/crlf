@@ -2,6 +2,8 @@ import { Component, OnInit, Input,
   OnChanges, SimpleChanges, SimpleChange  } from '@angular/core';
 import { Instrument } from '../instruments/instrument';
 import { Deal } from '../deal/deal';
+import * as _ from 'underscore';
+import { PortfolioService} from '../portfolio/portfolio.service';
 
 @Component({
   selector: 'app-deal',
@@ -15,18 +17,18 @@ export class DealComponent implements OnInit, OnChanges {
 
   @Input() instrument: Instrument;
 
-  constructor() { }
+  constructor(private portfolioService: PortfolioService) { }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const instrument: SimpleChange = changes.instrument;
-    this.deal = new Deal(instrument.currentValue, 100.0, 1, new Date(Date.now()), 'Equity Desk', 'Deutsche Bank', 'OMX');
+    this.deal = new Deal(instrument.currentValue, 'Deutsche Bank', 100.0, 1, new Date(Date.now()), 'Equity Desk', 'Deutsche Bank', 'OMX');
   }
 
   placeDeal(): void {
-    console.log('Deal placed' + this.deal);
+    this.portfolioService.execute(this.deal);
   }
 
 }
