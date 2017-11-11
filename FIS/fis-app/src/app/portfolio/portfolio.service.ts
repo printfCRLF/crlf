@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deal } from '../deal/deal';
-import { Position} from './position';
-import { Portfolio} from './portfolio';
+import { Position } from './position';
+import { Portfolio } from './portfolio';
 
 import * as _ from 'underscore';
 
@@ -17,12 +17,12 @@ export class PortfolioService {
     this.portfolios.set(uc.name, uc);
   }
 
-  execute(deal: Deal): void {
-    const p = this._getPortfolio(deal.portfolioName);
+  public add(deal: Deal): void {
+    const p = this._getOrCreate(deal.portfolioName);
     p.positions.push(deal);
   }
 
-  _getPortfolio(name) {
+  private _getOrCreate(name) {
     if (!this.portfolios.has(name)) {
       const p = new Portfolio(name);
       this.portfolios.set(p.name, p);

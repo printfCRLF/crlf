@@ -35,8 +35,8 @@ describe('PortfolioService', () => {
 
       const d1 = new Deal(ibm, DeutscheBank, 145.0, 1000, new Date(Date.now()), DeutscheBank, 'Bank of China', 'OMX');
       const d2 = new Deal(msft, DeutscheBank, 60.6, 2000, new Date(Date.now()), DeutscheBank, 'Swedbank', 'OMX');
-      service.execute(d1);
-      service.execute(d2);
+      service.add(d1);
+      service.add(d2);
       const positions = service.portfolios.get(DeutscheBank).positions;
 
       expect(_(positions).find(p => p.instrument.name === ibm.name)).toBeDefined();
@@ -47,8 +47,8 @@ describe('PortfolioService', () => {
       (service: PortfolioService) => {
       const d1 = new Deal(ibm, BankOfChina, 145.0, 1000, new Date(Date.now()), BankOfChina, 'Bank of China', 'OMX');
       const d2 = new Deal(msft, BankOfChina, 60.6, 2000, new Date(Date.now()), BankOfChina, 'Swedbank', 'OMX');
-      service.execute(d1);
-      service.execute(d2);
+      service.add(d1);
+      service.add(d2);
       const positions = service.portfolios.get(BankOfChina).positions;
 
       expect(_(positions).find(p => p.instrument.name === ibm.name)).toBeDefined();

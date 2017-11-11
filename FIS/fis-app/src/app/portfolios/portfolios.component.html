@@ -1,3 +1,18 @@
 <p>
   portfolios works!
 </p>
+<div>
+  <ul>
+    <!--<li *ngFor="let kv of portfolios() | keys">-->
+      <!--<span>-->
+        <!--Key: {{kv.key}}, value: {{kv.value}}-->
+      <!--</span>-->
+    <!--</li>-->
+
+    <li *ngFor="let kv of portfolios() | keyValue">
+      <span>
+        {{kv.key}} - {{kv.value.positions.length}}
+      </span>
+    </li>
+  </ul>
+</div>

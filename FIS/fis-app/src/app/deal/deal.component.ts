@@ -17,6 +17,7 @@ export class DealComponent implements OnInit, OnChanges {
 
   @Input() instrument: Instrument;
 
+
   constructor(private portfolioService: PortfolioService) { }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class DealComponent implements OnInit, OnChanges {
   }
 
   placeDeal(): void {
-    this.portfolioService.execute(this.deal);
+    this.portfolioService.add(this.deal);
   }
 
 }
