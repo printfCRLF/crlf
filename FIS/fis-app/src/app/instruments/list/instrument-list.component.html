@@ -1,3 +1,18 @@
-<p>
-  instrument-list works!
-</p>
+<table class="table table-striped table-hover">
+  <thead>
+  <th>Id</th>
+  <th>Name</th>
+  <th>Issuer</th>
+  <th>Currency</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let instrument of instruments"
+      [class.selected]="instrument === selectedInstrument"
+      (click)="onSelect(instrument)">
+    <td>{{instrument.id}}</td>
+    <td>{{instrument.name}}</td>
+    <td>{{instrument.issuer}}</td>
+    <td>{{instrument.currency}}</td>
+  </tr>
+  </tbody>
+</table>

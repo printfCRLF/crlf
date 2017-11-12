@@ -23,8 +23,6 @@ export class InstrumentsComponent implements OnInit {
     this.instruments = this.instrumentService.get();
   }
 
-
-
   onSelect(instrument: Instrument): void {
     this.selectedInstrument = instrument;
   }

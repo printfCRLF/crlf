@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Instrument } from '../instrument';
+import { InstrumentService} from '../instrument.service';
 
 @Component({
   selector: 'app-instrument-list',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstrumentListComponent implements OnInit {
 
-  constructor() { }
+  instruments: Instrument[];
+
+  @Input() selectedInstrument: Instrument;
+
+  constructor(private instrumentService: InstrumentService ) {
+
+  }
+
+  getInstruments(): void {
+    this.instruments = this.instrumentService.get();
+  }
+
+  onSelect(instrument: Instrument): void {
+    this.selectedInstrument = instrument;
+  }
 
   ngOnInit() {
+    this.getInstruments();
   }
 
 }
