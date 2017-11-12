@@ -11,6 +11,8 @@ import { DealComponent } from './deal/deal.component';
 import { PortfoliosComponent } from './portfolios/portfolios.component';
 import { PortfolioService } from './portfolio/portfolio.service';
 import {KeyValuePipe} from './portfolios/pipe';
+import { InstrumentAddComponent } from './instruments/add/instrument-add.component';
+import { InstrumentListComponent } from './instruments/list/instrument-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {KeyValuePipe} from './portfolios/pipe';
     InstrumentsComponent,
     DealComponent,
     PortfoliosComponent,
-    KeyValuePipe
+    KeyValuePipe,
+    InstrumentAddComponent,
+    InstrumentListComponent
   ],
   imports: [
     BrowserModule,

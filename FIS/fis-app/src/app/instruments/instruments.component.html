@@ -1,24 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <h3>Add an instrument</h3>
-    <form class="form-inline">
-      <div class="form-group">
-        <label>Name:</label>
-        <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="IBM"/>
-      </div>
-
-      <div class="form-group">
-        <label>Issuer:</label>
-        <input type="text" [(ngModel)]="instrument.issuer" name="issuer" placeholder="Asea Brown Boveri"/>
-      </div>
-
-      <div class="form-group">
-        <label>Currency:</label>
-        <input type="text" [(ngModel)]="instrument.currency" name="currency" placeholder="SEK"/>
-      </div>
-
-      <button type="submit" class="btn btn-default" (click)="add(instrument)">Add</button>
-    </form>
+    <app-instrument-add></app-instrument-add>
   </div>
 
   <div class="row">

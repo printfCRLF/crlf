@@ -11,8 +11,6 @@ import { InstrumentService} from './instrument.service';
 
 export class InstrumentsComponent implements OnInit {
 
-  instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: 'USD'};
-
   instruments: Instrument[];
 
   selectedInstrument: Instrument;
@@ -25,9 +23,7 @@ export class InstrumentsComponent implements OnInit {
     this.instruments = this.instrumentService.get();
   }
 
-  add(instrument: Instrument): void {
-    this.instrumentService.add(instrument);
-  }
+
 
   onSelect(instrument: Instrument): void {
     this.selectedInstrument = instrument;
