@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Instrument } from '../instrument';
 import { InstrumentService} from '../instrument.service';
 
@@ -12,6 +12,7 @@ export class InstrumentListComponent implements OnInit {
   instruments: Instrument[];
 
   @Input() selectedInstrument: Instrument;
+  @Output() onSelected = new EventEmitter<Instrument>();
 
   constructor(private instrumentService: InstrumentService ) {
 
@@ -23,6 +24,7 @@ export class InstrumentListComponent implements OnInit {
 
   onSelect(instrument: Instrument): void {
     this.selectedInstrument = instrument;
+    this.onSelected.emit(instrument);
   }
 
   ngOnInit() {

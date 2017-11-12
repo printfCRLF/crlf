@@ -5,7 +5,7 @@ import { FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 
-import { InstrumentsComponent } from './instruments/instruments.component';
+import { InstrumentContainerComponent } from './instruments/container/instrument-container.component';
 import { InstrumentService } from './instruments/instrument.service';
 import { DealComponent } from './deal/deal.component';
 import { PortfoliosComponent } from './portfolios/portfolios.component';
@@ -17,7 +17,7 @@ import { InstrumentListComponent } from './instruments/list/instrument-list.comp
 @NgModule({
   declarations: [
     AppComponent,
-    InstrumentsComponent,
+    InstrumentContainerComponent,
     DealComponent,
     PortfoliosComponent,
     KeyValuePipe,
