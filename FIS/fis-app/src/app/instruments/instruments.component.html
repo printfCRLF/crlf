@@ -1,35 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3>Add an instrument</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="IBM"/>
+      </div>
 
+      <div class="form-group">
+        <label>Issuer:</label>
+        <input type="text" [(ngModel)]="instrument.issuer" name="issuer" placeholder="Asea Brown Boveri"/>
+      </div>
 
-<div>
-  <label>Id:
-    <input [(ngModel)]="instrument.id" placeholder="999"/>
-  </label>
-  <label>Name:
-    <input [(ngModel)]="instrument.name" placeholder="IBM"/>
-  </label>
+      <div class="form-group">
+        <label>Currency:</label>
+        <input type="text" [(ngModel)]="instrument.currency" name="currency" placeholder="SEK"/>
+      </div>
 
-  <label>Issuer:
-    <input [(ngModel)]="instrument.issuer" placeholder="Asea Brown Boveri"/>
-  </label>
+      <button type="submit" class="btn btn-default" (click)="add(instrument)">Add</button>
+    </form>
+  </div>
 
-  <label>Id:
-    <input [(ngModel)]="instrument.currency" placeholder="SEK"/>
-  </label>
-</div>
-<button (click)="add(instrument)">Add</button>
-
-<ul>
-  <li *ngFor="let instrument of instruments"
-      [class.selected]="instrument === selectedInstrument"
-      (click)="onSelect(instrument)">
-    <div>
-      <span>Id: </span> {{instrument.id}}
-      <span>Name: </span> {{instrument.name}}
-      <span>Issuer: </span> {{instrument.issuer}}
-      <span>Currency: </span> {{instrument.currency}}
+  <div class="row">
+    <div class="col-lg-8 col-md-8">
+      <table class="table table-striped table-hover">
+        <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Issuer</th>
+        <th>Currency</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let instrument of instruments"
+            [class.selected]="instrument === selectedInstrument"
+            (click)="onSelect(instrument)">
+          <td>{{instrument.id}}</td>
+          <td>{{instrument.name}}</td>
+          <td>{{instrument.issuer}}</td>
+          <td>{{instrument.currency}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-  </li>
-</ul>
 
+    <div class="col-lg-4 col-md-4">
+      <app-deal [instrument]="selectedInstrument"></app-deal>
+    </div>
 
-<app-deal [instrument]="selectedInstrument"></app-deal>
+  </div>
+
+</div>
