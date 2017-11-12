@@ -1,12 +1,14 @@
 <div class="container-fluid">
-  <div class="row">
-    <app-instrument-add></app-instrument-add>
-  </div>
-
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-lg-8 col-md-8">
-      <app-instrument-list [selectedInstrument]="selectedInstrument"
-                           (onSelected) = "onSelected($event)" ></app-instrument-list>
+      <div class="mt-2">
+        <app-instrument-add ></app-instrument-add>
+      </div>
+      <div class="mt-4">
+        <app-instrument-list
+                             [selectedInstrument]="selectedInstrument"
+                             (onSelected) = "onSelected($event)" ></app-instrument-list>
+      </div>
     </div>
 
     <div class="col-lg-4 col-md-4">

@@ -1,3 +1,4 @@
+import { Currency } from './currency';
 
 export class Instrument {
   // id: number;
@@ -5,7 +6,7 @@ export class Instrument {
   // issuer: string;
   // currency: string;
 
-  constructor(public id: number, public name: string, public issuer: string, public currency: string) {
+  constructor(public id: number, public name: string, public issuer: string, public currency: Currency) {
 
   }
 }

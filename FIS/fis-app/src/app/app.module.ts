@@ -13,6 +13,7 @@ import { PortfolioService } from './portfolio/portfolio.service';
 import {KeyValuePipe} from './portfolios/pipe';
 import { InstrumentAddComponent } from './instruments/add/instrument-add.component';
 import { InstrumentListComponent } from './instruments/list/instrument-list.component';
+import { CurrencyDropdownComponent } from './currency-dropdown/currency-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { InstrumentListComponent } from './instruments/list/instrument-list.comp
     PortfoliosComponent,
     KeyValuePipe,
     InstrumentAddComponent,
-    InstrumentListComponent
+    InstrumentListComponent,
+    CurrencyDropdownComponent
   ],
   imports: [
     BrowserModule,

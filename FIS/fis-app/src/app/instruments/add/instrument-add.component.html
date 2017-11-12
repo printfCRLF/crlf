@@ -1,18 +1,20 @@
 <h3>Add an instrument</h3>
 <form class="form-inline">
   <div class="form-group">
-    <label>Name:</label>
+    <label>Name</label>
     <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="IBM"/>
   </div>
 
   <div class="form-group">
-    <label>Issuer:</label>
+    <label>Issuer</label>
     <input type="text" [(ngModel)]="instrument.issuer" name="issuer" placeholder="Asea Brown Boveri"/>
   </div>
 
   <div class="form-group">
-    <label>Currency:</label>
-    <input type="text" [(ngModel)]="instrument.currency" name="currency" placeholder="SEK"/>
+    <label class="active">Currency</label>
+    <app-currency-dropdown [currency]="instrument.currency"
+                           (onSelected)="currencySelected($event)"
+                           class="w-100"></app-currency-dropdown>
   </div>
 
   <button type="submit" class="btn btn-default" (click)="add(instrument)">Add</button>

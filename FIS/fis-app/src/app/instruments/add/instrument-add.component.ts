@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Currency } from '../currency';
 import { Instrument } from '../instrument';
 import { InstrumentService} from '../instrument.service';
 
@@ -9,7 +10,7 @@ import { InstrumentService} from '../instrument.service';
 })
 export class InstrumentAddComponent implements OnInit {
 
-  instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: 'USD'};
+  instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: Currency.USD};
 
   constructor(private instrumentService: InstrumentService ) {
 
@@ -18,8 +19,13 @@ export class InstrumentAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  add(instrument: Instrument): void {
-    this.instrumentService.add(instrument);
+  add(instrument: Instrument) {
+    const copy = { ...instrument };
+    this.instrumentService.add(copy);
+  }
+
+  currencySelected(currency: Currency) {
+    this.instrument.currency = currency;
   }
 
 }
