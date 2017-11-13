@@ -2,5 +2,31 @@
   .sm-hide {
     display: none;
   }
+
+  .header-quantity span{
+    display: none;
+  }
+
+  .header-quantity:after {
+    content: "Qty.";
+  }
+
+  .header-direction span{
+    display: none;
+  }
+
+  .header-direction:after {
+    content: "Dir.";
+  }
+
+  .p-4 {
+    padding: 0.8rem !important;
+  }
+
+  table.table td {
+    padding: 0.3rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
 }
 
