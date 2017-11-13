@@ -10,11 +10,14 @@ import { InstrumentService } from './instruments/instrument.service';
 import { DealComponent } from './deal/deal.component';
 import { PortfoliosComponent } from './portfolios/portfolios.component';
 import { PortfolioService } from './portfolio/portfolio.service';
+import { PortfolioServiceMock } from './portfolio/portfolio.service.mock';
+
 import { KeyValuePipe } from './portfolios/pipe';
 import { InstrumentAddComponent } from './instruments/add/instrument-add.component';
 import { InstrumentListComponent } from './instruments/list/instrument-list.component';
 import { CurrencyDropdownComponent } from './currency-dropdown/currency-dropdown.component';
 import { PnLService } from './pnl/pnl.service';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,7 @@ import { PnLService } from './pnl/pnl.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [InstrumentService, PortfolioService, PnLService],
+  providers: [InstrumentService, PortfolioService, PortfolioServiceMock, PnLService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

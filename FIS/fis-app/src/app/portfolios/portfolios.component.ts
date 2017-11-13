@@ -21,6 +21,14 @@ export class PortfoliosComponent implements OnInit {
   ngOnInit() {
   }
 
+  public load() {
+    this.portfolioService.load();
+  }
+
+  public reset() {
+    this.portfolioService.reset();
+  }
+
   public portfolios() {
     this._calculatePnL();
     return this.portfolioService.portfolios;

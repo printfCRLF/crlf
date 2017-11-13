@@ -15,7 +15,7 @@ export class PnLService {
   public calculatePosition(position: Position): PnL {
     const marketPrice = this.instrumentService.getPrice(position.instrument.id);
     const d =  position.direction === Direction.Long ? 1 : -1;
-    const upl = (position.price - marketPrice) * position.quantity * d;
+    const upl = (marketPrice - position.price) * position.quantity * d;
     return new PnL(upl, 0.0);
   }
 
