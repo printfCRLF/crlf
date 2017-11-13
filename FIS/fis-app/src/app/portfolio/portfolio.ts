@@ -1,17 +1,22 @@
 import { Position } from './position';
+import { PnL } from '../pnl/pnl';
 
 export class Portfolio {
 
   positions: Position[] = [];
 
-  name = 'My portfolio';
+  private _name = 'My portfolio';
 
-  constructor(name) {
-    this.name = name;
+  constructor(
+    public name: string,
+    public pnl: PnL) {
+
+    this._name = name;
   }
 
   add(position: Position) {
     this.positions.push(position);
   }
+
 
 }

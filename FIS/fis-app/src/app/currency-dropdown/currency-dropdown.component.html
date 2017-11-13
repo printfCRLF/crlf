@@ -1,0 +1,17 @@
+<!--<select (change)="parseValue($event.target.value)"-->
+        <!--class="dropdown">-->
+  <!--<option *ngFor="let name of options"-->
+          <!--[value]="name"-->
+          <!--class="dropdown-item">{{name}}</option>-->
+<!--</select>-->
+
+<div class="dropdown w-100">
+  <button class="btn btn-outline-default dropdown-toggle" type="button" id="dropdownMenu1"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{currency}}</button>
+
+  <div class="dropdown-menu dropdown-primary">
+    <a class="dropdown-item" *ngFor="let name of options"
+            (click)="parseValue(name)">{{name}}</a>
+  </div>
+</div>
+

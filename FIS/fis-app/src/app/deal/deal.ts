@@ -4,6 +4,7 @@ export class Deal {
   constructor(
     public instrument: Instrument,
     public portfolioName: string,
+    public direction: Direction,
     public price: number,
     public quantity: number,
     public tradeTime: Date,
@@ -13,4 +14,8 @@ export class Deal {
   }
 }
 
+export enum Direction {
+  Long = 'Long',
+  Short = 'Short'
+}
 

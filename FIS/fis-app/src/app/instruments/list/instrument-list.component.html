@@ -3,6 +3,7 @@
   <thead>
   <th>Id</th>
   <th>Name</th>
+  <th>Market Price</th>
   <th>Issuer</th>
   <th>Currency</th>
   </thead>
@@ -12,6 +13,7 @@
       (click)="onSelect(instrument)">
     <td>{{instrument.id}}</td>
     <td>{{instrument.name}}</td>
+    <td>{{instrument.price | number:'1.2-2' }}</td>
     <td>{{instrument.issuer}}</td>
     <td>{{instrument.currency}}</td>
   </tr>

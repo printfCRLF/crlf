@@ -10,7 +10,8 @@ import { InstrumentService} from '../instrument.service';
 })
 export class InstrumentAddComponent implements OnInit {
 
-  instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: Currency.USD};
+  // instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: Currency.USD};
+  instrument: Instrument = new Instrument(-1, 'AMAZ', 1014.22, 'NYSE', Currency.USD);
 
   constructor(private instrumentService: InstrumentService ) {
 

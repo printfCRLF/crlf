@@ -1,25 +1,76 @@
-<div *ngIf="instrument" class="card">
-  <div class="card-header">
-    {{instrument.name}}
-  </div>
-  <div class="card-body">
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary">
-        <input type="radio" name="options" id="buy" autocomplete="off">Buy
-      </label>
-      <label class="btn btn-primary">
-        <input type="radio" name="options" id="sell" autocomplete="off">Sell
-      </label>
-    </div>
-    <div><span>Price: </span>{{deal.price}} {{instrument.currency}}</div>
-    <div>
-      <label>Size:
-        <input [(ngModel)]="deal.size" placeholder="1"/>
-      </label>
-    </div>
-    <button (click)="placeDeal()">Place deal</button>
+<div *ngIf="instrument">
+  <form class="container">
+    <h3 class="text-center" >{{instrument.name}}</h3>
 
-  </div>
+    <div class="text-center mt-4">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-outline-default" (click)="clickLong()">
+          <input type="radio" name="options" id="long" autocomplete="off">Long</label>
+        <label class="btn btn-outline-default" (click)="clickShort()">
+          <input type="radio" name="options" id="short" autocomplete="off" >Short</label>
+      </div>
+    </div>
 
+    <div class="row mt-4">
+      <div class="col-4 mt-2">
+        <label class="float-right">Price</label>
+      </div>
+      <div class="col-6">
+        <input type="number" [(ngModel)]="deal.price" name="price"/>
+      </div>
+      <div class="col-2 mt-2">
+        {{instrument.currency}}
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 mt-2">
+        <label class="float-right">Size</label>
+      </div>
+      <div class="col-8">
+        <input type="number" [(ngModel)]="deal.quantity" name="quantity"/>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 mt-2">
+        <label class="float-right">Portfolio</label>
+      </div>
+      <div class="col-8">
+        <input type="text" [(ngModel)]="deal.portfolioName" name="portfolio"/>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 mt-2">
+        <label class="float-right">Acquirer</label>
+      </div>
+      <div class="col-8">
+        <input type="text" [(ngModel)]="deal.acquirer" name="acquirer"/>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 mt-2">
+        <label class="float-right">Counter party</label>
+      </div>
+      <div class="col-8">
+        <input type="text" [(ngModel)]="deal.counterParty" name="counterParty"/>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 mt-2">
+        <label class="float-right">Acquirer</label>
+      </div>
+      <div class="col-8">
+        <input type="text" [(ngModel)]="deal.marketPlace" name="marketPlace"/>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-default" (click)="placeDeal()">Place deal</button>
+    </div>
+  </form>
 
 </div>

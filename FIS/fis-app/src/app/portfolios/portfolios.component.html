@@ -1,25 +1,24 @@
-<p>
-  portfolios works!
-</p>
-<div>
-  <table>
+<div class="p-4">
+  <table class="table table-striped table-hover ">
     <thead>
-      <tr>
+      <tr class="font-bold">
         <th></th>
-        <th colspan="2">Instrument</th>
-        <th colspan="3">Position</th>
-        <th colspan="3">Profit / Loss</th>
+        <th colspan="3" class="text-center">Instrument</th>
+        <th colspan="4" class="text-center">Position</th>
+        <th colspan="3" class="text-center">Profit / Loss</th>
       </tr>
-      <tr>
+      <tr class="font-bold">
         <th>Portfolio</th>
-        <th>Curr</th>
+        <th class="text-right">Market Price</th>
+        <th>Currency</th>
         <th>Issuer</th>
-        <th>Price</th>
-        <th>Size</th>
-        <th>Value</th>
-        <th>TPL</th>
-        <th>UPL</th>
-        <th>RPL</th>
+        <th>Direction</th>
+        <th class="text-right">Price</th>
+        <th class="text-right">Quantity</th>
+        <th class="text-right">Value</th>
+        <th class="text-right">TPL</th>
+        <th class="text-right">UPL</th>
+        <th class="text-right">RPL</th>
       </tr>
     </thead>
 
@@ -28,14 +27,27 @@
       <ng-container *ngFor="let kv of portfolios() | keyValue">
         <tr>
           <td>{{kv.key}}</td>
+          <td colspan="3"></td>
+          <td colspan="4"></td>
+          <td class="text-right">{{kv.value.pnl.tpl() | number:"1.2-2"}}</td>
+          <td class="text-right">{{kv.value.pnl.upl | number:"1.2-2"}}</td>
+          <td class="text-right">{{kv.value.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
         <tr *ngFor="let position of kv.value.positions">
-          <td>{{position.instrument.name}}</td>
+          <td>
+            <span class="ml-4 mr-4"> </span>
+            <span>{{position.instrument.name}}</span>
+          </td>
+          <td class="text-right">{{ getMarketPrice(position.instrument.id) | number:"1.2-2"}}</td>
           <td>{{position.instrument.currency}}</td>
           <td>{{position.instrument.issuer}}</td>
-          <td>{{position.price}}</td>
-          <td>{{position.quantity}}</td>
-          <td>{{position.price * position.quantity}} </td>
+          <td>{{position.direction}}</td>
+          <td class="text-right">{{position.price | number:"1.2-2"}}</td>
+          <td class="text-right">{{position.quantity}}</td>
+          <td class="text-right">{{(position.price * position.quantity) | number:"1.2-2"}} </td>
+          <td class="text-right">{{position.pnl.tpl() | number:"1.2-2"}}</td>
+          <td class="text-right">{{position.pnl.upl | number:"1.2-2"}}</td>
+          <td class="text-right">{{position.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
       </ng-container>
 

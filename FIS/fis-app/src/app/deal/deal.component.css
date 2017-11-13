@@ -1,0 +1,13 @@
+.btn-group .btn.active {
+  background-color: lightseagreen;
+  color: white !important;
+}
+
+.btn-group .btn {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 2px;
+  margin-left: 0;
+}
+
+

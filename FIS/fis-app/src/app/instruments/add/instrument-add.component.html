@@ -2,7 +2,12 @@
 <form class="form-inline">
   <div class="form-group">
     <label>Name</label>
-    <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="IBM"/>
+    <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="AMAZ"/>
+  </div>
+
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" [(ngModel)]="instrument.price" name="price" placeholder="1014.35"/>
   </div>
 
   <div class="form-group">
@@ -16,6 +21,8 @@
                            (onSelected)="currencySelected($event)"
                            class="w-100"></app-currency-dropdown>
   </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default" (click)="add(instrument)">Add</button>
+  </div>
 
-  <button type="submit" class="btn btn-default" (click)="add(instrument)">Add</button>
 </form>
