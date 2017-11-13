@@ -4,24 +4,24 @@
 
   <table class="table table-striped table-hover ">
     <thead>
-      <tr class="font-bold">
+      <tr class="font-bold sm-hide">
         <th></th>
         <th colspan="3" class="text-center">Instrument</th>
         <th colspan="4" class="text-center">Position</th>
         <th colspan="3" class="text-center">Profit / Loss</th>
       </tr>
-      <tr class="font-bold">
-        <th>Portfolio</th>
+      <tr class="font-bold ">
+        <th class="">Portfolio</th>
         <th class="text-right">Market Price</th>
-        <th>Currency</th>
-        <th>Issuer</th>
+        <th class="sm-hide">Currency</th>
+        <th class="sm-hide">Issuer</th>
         <th>Direction</th>
         <th class="text-right">Price</th>
         <th class="text-right">Quantity</th>
-        <th class="text-right">Value</th>
+        <th class="text-right sm-hide">Value</th>
         <th class="text-right">TPL</th>
-        <th class="text-right">UPL</th>
-        <th class="text-right">RPL</th>
+        <th class="text-right sm-hide">UPL</th>
+        <th class="text-right sm-hide">RPL</th>
       </tr>
     </thead>
 
@@ -30,27 +30,32 @@
       <ng-container *ngFor="let kv of portfolios() | keyValue">
         <tr class="border">
           <td class="font-bold">{{kv.key}}</td>
-          <td colspan="3"></td>
-          <td colspan="4"></td>
-          <td class="font-bold text-right">{{kv.value.pnl.tpl() | number:"1.2-2"}}</td>
-          <td class="font-bold text-right">{{kv.value.pnl.upl | number:"1.2-2"}}</td>
-          <td class="font-bold text-right">{{kv.value.pnl.rpl | number:"1.2-2"}}</td>
+          <td></td>
+          <td class="sm-hide"></td>
+          <td class="sm-hide"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="sm-hide"></td>
+          <td class="font-bold text-right ">{{kv.value.pnl.tpl() | number:"1.2-2"}}</td>
+          <td class="font-bold text-right sm-hide">{{kv.value.pnl.upl | number:"1.2-2"}}</td>
+          <td class="font-bold text-right sm-hide">{{kv.value.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
         <tr *ngFor="let position of kv.value.positions" class="border">
-          <td class="border ">
-            <span class="ml-4 mr-4"> </span>
+          <td class="border">
+            <span class="ml-2 mr-2"> </span>
             <span>{{position.instrument.name}}</span>
           </td>
           <td class="text-right">{{ getMarketPrice(position.instrument.id) | number:"1.2-2"}}</td>
-          <td>{{position.instrument.currency}}</td>
-          <td class="border border-left-0">{{position.instrument.issuer}}</td>
+          <td class="sm-hide">{{position.instrument.currency}}</td>
+          <td class="border border-left-0 sm-hide">{{position.instrument.issuer}}</td>
           <td>{{position.direction}}</td>
           <td class="text-right">{{position.price | number:"1.2-2"}}</td>
           <td class="text-right">{{position.quantity}}</td>
-          <td class="text-right border border-left-0">{{(position.price * position.quantity) | number:"1.2-2"}} </td>
+          <td class="text-right border border-left-0 sm-hide">{{(position.price * position.quantity) | number:"1.2-2"}} </td>
           <td class="text-right">{{position.pnl.tpl() | number:"1.2-2"}}</td>
-          <td class="text-right">{{position.pnl.upl | number:"1.2-2"}}</td>
-          <td class="text-right border border-left-0">{{position.pnl.rpl | number:"1.2-2"}}</td>
+          <td class="text-right sm-hide">{{position.pnl.upl | number:"1.2-2"}}</td>
+          <td class="text-right border border-left-0 sm-hide">{{position.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
       </ng-container>
 
