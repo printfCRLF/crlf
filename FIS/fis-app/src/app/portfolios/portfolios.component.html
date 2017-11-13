@@ -28,29 +28,29 @@
     <tbody>
 
       <ng-container *ngFor="let kv of portfolios() | keyValue">
-        <tr>
-          <td>{{kv.key}}</td>
+        <tr class="border">
+          <td class="font-bold">{{kv.key}}</td>
           <td colspan="3"></td>
           <td colspan="4"></td>
-          <td class="text-right">{{kv.value.pnl.tpl() | number:"1.2-2"}}</td>
-          <td class="text-right">{{kv.value.pnl.upl | number:"1.2-2"}}</td>
-          <td class="text-right">{{kv.value.pnl.rpl | number:"1.2-2"}}</td>
+          <td class="font-bold text-right">{{kv.value.pnl.tpl() | number:"1.2-2"}}</td>
+          <td class="font-bold text-right">{{kv.value.pnl.upl | number:"1.2-2"}}</td>
+          <td class="font-bold text-right">{{kv.value.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
-        <tr *ngFor="let position of kv.value.positions">
-          <td>
+        <tr *ngFor="let position of kv.value.positions" class="border">
+          <td class="border ">
             <span class="ml-4 mr-4"> </span>
             <span>{{position.instrument.name}}</span>
           </td>
           <td class="text-right">{{ getMarketPrice(position.instrument.id) | number:"1.2-2"}}</td>
           <td>{{position.instrument.currency}}</td>
-          <td>{{position.instrument.issuer}}</td>
+          <td class="border border-left-0">{{position.instrument.issuer}}</td>
           <td>{{position.direction}}</td>
           <td class="text-right">{{position.price | number:"1.2-2"}}</td>
           <td class="text-right">{{position.quantity}}</td>
-          <td class="text-right">{{(position.price * position.quantity) | number:"1.2-2"}} </td>
+          <td class="text-right border border-left-0">{{(position.price * position.quantity) | number:"1.2-2"}} </td>
           <td class="text-right">{{position.pnl.tpl() | number:"1.2-2"}}</td>
           <td class="text-right">{{position.pnl.upl | number:"1.2-2"}}</td>
-          <td class="text-right">{{position.pnl.rpl | number:"1.2-2"}}</td>
+          <td class="text-right border border-left-0">{{position.pnl.rpl | number:"1.2-2"}}</td>
         </tr>
       </ng-container>
 
