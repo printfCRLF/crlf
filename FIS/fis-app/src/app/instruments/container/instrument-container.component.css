@@ -4,17 +4,11 @@
   }
 }
 
-@media (min-width: 681px) and (max-width: 767px) {
+@media (max-width: 420px ) {
   .col-sm-6,.col-xs-6 {
     border-top: solid 1px lightgrey;
   }
 
-  .p-4 {
-    padding: 0.8rem !important;
-  }
-}
-
-@media (max-width: 420px ) {
   .p-4 {
     padding: 0.2rem !important;
   }

@@ -1,8 +1,8 @@
-<h3 id="add-instrument-header">Add an instrument
+<h3 id="add-instrument-header">
   <button type="button" class="btn btn-default" (click)="expand()">Add</button>
 </h3>
 
-<form class="form-inline" *ngIf="mode === 'expand'">
+<form class="form-inline" [hidden]="mode === 'collapsed'">
   <div class="form-group">
     <label>Name</label>
     <input type="text" [(ngModel)]="instrument.name" name="name" placeholder="AMAZ"/>
@@ -29,3 +29,4 @@
   </div>
 
 </form>
+
