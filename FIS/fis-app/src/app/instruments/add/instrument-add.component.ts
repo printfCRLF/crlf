@@ -12,6 +12,7 @@ export class InstrumentAddComponent implements OnInit {
 
   // instrument: Instrument = { id: 100, name : 'IBM', issuer : 'NYSE', currency: Currency.USD};
   instrument: Instrument = new Instrument(-1, 'AMAZ', 1014.22, 'NYSE', Currency.USD);
+  mode = 'collapsed';
 
   constructor(private instrumentService: InstrumentService ) {
 
@@ -23,10 +24,17 @@ export class InstrumentAddComponent implements OnInit {
   add(instrument: Instrument) {
     const copy = { ...instrument };
     this.instrumentService.add(copy);
+    this.mode = 'collapsed';
+  }
+
+  expand() {
+    this.mode = 'expand';
   }
 
   currencySelected(currency: Currency) {
     this.instrument.currency = currency;
   }
+
+
 
 }

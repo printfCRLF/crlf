@@ -1,6 +1,14 @@
-@media (max-width: 767px) {
+@media (max-width: 420px) {
   .sm-hide {
     display: none;
+  }
+
+  .header-market-price span {
+    display: none;
+  }
+
+  .header-market-price:after {
+    content: "Mkt. Price"
   }
 
   .header-quantity span{
@@ -20,13 +28,13 @@
   }
 
   .p-4 {
-    padding: 0.8rem !important;
+    padding: 0.2rem !important;
   }
 
-  table.table td {
-    padding: 0.3rem;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+  table.table td, table.table th {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
   }
 }
+
 

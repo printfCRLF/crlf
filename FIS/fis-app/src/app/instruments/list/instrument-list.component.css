@@ -9,3 +9,27 @@
 .table tr.selected:hover {
   background-color: #BBD8DC;
 }
+
+@media (max-width: 420px) {
+
+  table.table td, table.table th {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+
+  .header-market-price span {
+    display: none;
+  }
+
+  .header-market-price:after {
+    content: "Price"
+  }
+
+  .header-currency span {
+    display: none;
+  }
+
+  .header-currency:after {
+    content: "$"
+  }
+}

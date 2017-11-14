@@ -46,6 +46,11 @@ export class DealComponent implements OnInit, OnChanges {
   placeDeal(): void {
     this.instrumentService.update(this.deal.instrument.id, this.deal.price);
     this.portfolioService.add(this.deal);
+
+    setTimeout(() => {
+      const element = document.getElementById('add-instrument-header');
+      element.scrollIntoView();
+    }, 500);
   }
 
 }
