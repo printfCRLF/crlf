@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="s6_ParallelLinq\" />
+    <Folder Include="s5_ParallelLoops\" />
+    <Folder Include="s4_TaskCoordination\" />
+    <Folder Include="s3_ConcurrentCollections\" />
+    <Folder Include="s2_DataSharing\" />
+  </ItemGroup>
+
+</Project>
