@@ -10,7 +10,6 @@
     <Folder Include="s5_ParallelLoops\" />
     <Folder Include="s4_TaskCoordination\" />
     <Folder Include="s3_ConcurrentCollections\" />
-    <Folder Include="s2_DataSharing\" />
   </ItemGroup>
 
 </Project>
