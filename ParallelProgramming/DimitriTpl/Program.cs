@@ -16,7 +16,9 @@ namespace DimitriTpl
 
 			//new m10_CriticalSection().Run();
 			//new m11_InterlockedObject().Run();
-			new m12_SpinLockExample().Run();
+			//new m12_SpinLockExample().Run();
+			new m13_MutexExample().Run();
         }
     }
+
 }
