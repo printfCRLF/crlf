@@ -20,5 +20,11 @@ namespace SamuraiApp.Data.Standard
         //    var cs = "Data Source=localhost;Initial Catalog=SamuraiAppDotNet;Integrated Security=True";
         //    optionsBuilder.UseSqlServer(cs);
         //}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>()
+                .HasKey(s => new { s.SamuraiId, s.BattleId });
+        }
     }
 }
