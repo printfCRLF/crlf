@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Domain.DotNet", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Data.DotNet", "SamuraiApp.Data.DotNet\SamuraiApp.Data.DotNet.csproj", "{11A56829-A872-4753-B24B-43550CA4764A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Domain.Standard", "SamuraiApp.Domain.Standard\SamuraiApp.Domain.Standard.csproj", "{22FA6D04-079E-4CD8-9E5F-1E4007C8413A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Data.Standard", "SamuraiApp.Data.Standard\SamuraiApp.Data.Standard.csproj", "{F29B738E-3D1E-4841-92BA-1BD0CB7229E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCore", "WebAppCore\WebAppCore.csproj", "{D558BE28-CF2D-49F5-AB70-B1532A415A70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{11A56829-A872-4753-B24B-43550CA4764A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A56829-A872-4753-B24B-43550CA4764A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A56829-A872-4753-B24B-43550CA4764A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22FA6D04-079E-4CD8-9E5F-1E4007C8413A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22FA6D04-079E-4CD8-9E5F-1E4007C8413A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22FA6D04-079E-4CD8-9E5F-1E4007C8413A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22FA6D04-079E-4CD8-9E5F-1E4007C8413A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F29B738E-3D1E-4841-92BA-1BD0CB7229E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F29B738E-3D1E-4841-92BA-1BD0CB7229E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F29B738E-3D1E-4841-92BA-1BD0CB7229E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F29B738E-3D1E-4841-92BA-1BD0CB7229E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D558BE28-CF2D-49F5-AB70-B1532A415A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D558BE28-CF2D-49F5-AB70-B1532A415A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D558BE28-CF2D-49F5-AB70-B1532A415A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D558BE28-CF2D-49F5-AB70-B1532A415A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
