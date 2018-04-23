@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SamuraiApp.Domain.DotNet
 {
-    class Battle
+    public class Battle
     {
         public int Id { get; set; }
         public string Name { get; set; }
