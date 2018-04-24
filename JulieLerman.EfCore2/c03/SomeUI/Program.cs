@@ -16,7 +16,12 @@ namespace SomeUI
             //InsertSamurai();
             //InsertMultipleSamurais();
             //InsertMultipleDifferentObjects();
-            MoreQueries();
+            //MoreQueries();
+            //RetrieveAndUpdateSamurai();
+            //RetrieveAndUpdateMultipleSamurais();
+            //QueryAndUpdateBattle_Disconnected();
+
+            //DeleteWhileTracked();
         }
 
         private static void InsertSamurai()
@@ -72,6 +77,79 @@ namespace SomeUI
                 var lastSampson = context.Samurais.OrderBy(s => s.Id).LastOrDefault(s => s.Name == name);
             }
 
+        }
+
+        private static void RetrieveAndUpdateSamurai()
+        {
+            using (var context = new SamuraiContext())
+            {
+                var samurai = context.Samurais.FirstOrDefault();
+                samurai.Name += "San";
+                context.SaveChanges();
+            }
+        }
+
+        private static void RetrieveAndUpdateMultipleSamurais()
+        {
+            using (var context = new SamuraiContext())
+            {
+                var samurais = context.Samurais.ToList();
+                samurais.ForEach(s => s.Name += "San");
+                context.SaveChanges();
+            }
+        }
+
+        private static void QueryAndUpdateBattle_Disconnected()
+        {
+            Battle battle;
+            using (var context1 = new SamuraiContext())
+            {
+                battle = context1.Battles.FirstOrDefault();
+                battle.EndDate = new DateTime(1560, 06, 30);
+            }
+
+            // In a disconnected scenario, all fields of an entity are updated. Because EF doesn't track the entity and doesn't know which fields are changed. 
+            using (var context2 = new SamuraiContext())
+            {
+                context2.Battles.Update(battle);
+                context2.SaveChanges();
+            }
+        }
+
+        private static void DeleteWhileTracked()
+        {
+            using (var context = new SamuraiContext())
+            {
+                var samurai = context.Samurais.FirstOrDefault(s => s.Name.Contains("Julie"));
+                context.Samurais.Remove(samurai);
+                context.SaveChanges();
+            }
+        }
+
+        private static void DeleteMany()
+        {
+            using (var context = new SamuraiContext())
+            {
+                var samurais = context.Samurais.Where(s => s.Name.Contains("Julie"));
+                context.Samurais.RemoveRange(samurais);
+                context.SaveChanges();
+            }
+        }
+
+        private static void DeleteWhileNotTracked()
+        {
+            Samurai samurai;
+            using (var context = new SamuraiContext())
+            {
+                samurai = context.Samurais.FirstOrDefault(s => s.Name == "Heihachi Hayashida");
+            }
+
+            using (var contextNewAppInstance = new SamuraiContext())
+            {
+                contextNewAppInstance.Samurais.Remove(samurai);
+                //contextNewAppInstance.Entry(samurai).State=EntityState.Deleted;
+                contextNewAppInstance.SaveChanges();
+            }
         }
     }
 }
