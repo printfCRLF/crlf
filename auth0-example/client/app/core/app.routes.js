@@ -2,15 +2,16 @@
     'use strict';
 
     angular.module('app')
-            .config(config);
+        .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider', 
+    config.$inject = ['$stateProvider', '$urlRouterProvider',
         '$locationProvider',
-        '$provide', 'angularAuth0Provider', '$httpProvider', 'jwtInterceptorProvider'];
+        '$provide', 'angularAuth0Provider', '$httpProvider',
+        'jwtInterceptorProvider', 'jwtOptionsProvider'];
 
-    function config($stateProvider, $urlRouterProvider, 
+    function config($stateProvider, $urlRouterProvider,
         $locationProvider,
-        $provide, angularAuth0Provider, $httpProvider, jwtInterceptorProvider) {
+        $provide, angularAuth0Provider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider) {
 
         angularAuth0Provider.init({
             clientID: AUTH0_CLIENT_ID,
@@ -18,8 +19,19 @@
             responseType: 'token id_token',
             audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
             redirectUri: AUTH0_CALLBACK_URL,
-            scope: 'openid'
-          });
+            scope: 'openid profile'
+        });
+
+        // jwtOptionsProvider.config({
+        //     whiteListedDomains: ['api.myapp.com', 'localhost']
+        // });
+
+        // jwtInterceptorProvider.tokenGetter = tokenGetter;
+
+        // tokenGetter.$inject = ['store'];
+        // function tokenGetter(store) {
+        //     return store.get('id_token');
+        // }
 
         $urlRouterProvider.when('', '/todos/list');
         $urlRouterProvider.when('/', '/todos/list');
@@ -31,37 +43,37 @@
         // $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('root', {
-                    abstract: true,
-                    url: '/',
-                    data: {
-                        title: 'Home',
-                        breadcrumb: 'Home'
+                abstract: true,
+                url: '/',
+                data: {
+                    title: 'Home',
+                    breadcrumb: 'Home'
+                },
+                views: {
+                    'header': {
+                        templateUrl: 'core/navigation/headerView.html',
+                        controller: 'HeaderController',
+                        controllerAs: 'HC'
                     },
-                    views: {
-                        'header': {
-                            templateUrl: 'core/navigation/headerView.html',
-                            controller: 'HeaderController',
-                            controllerAs: 'HC'
-                        },
-                        'menu': {
-                            templateUrl: 'core/navigation/menuView.html',
-                            controller: 'MenuController',
-                            controllerAs: 'MC'
-                        },
-                        'breadcrumbs': {
-                            templateUrl: 'core/navigation/breadcrumbsView.html',
-                            controller: 'BreadcrumbsController',
-                            controllerAs: 'BC'
-                        },
-                        'content': {
-                            template: 'Choose option from menu...'
-                        },
-                        'footer': {
-                            templateUrl: 'core/navigation/footerView.html',
-                            controller: 'FooterController',
-                            controllerAs: 'FC'
-                        }
+                    'menu': {
+                        templateUrl: 'core/navigation/menuView.html',
+                        controller: 'MenuController',
+                        controllerAs: 'MC'
+                    },
+                    'breadcrumbs': {
+                        templateUrl: 'core/navigation/breadcrumbsView.html',
+                        controller: 'BreadcrumbsController',
+                        controllerAs: 'BC'
+                    },
+                    'content': {
+                        template: 'Choose option from menu...'
+                    },
+                    'footer': {
+                        templateUrl: 'core/navigation/footerView.html',
+                        controller: 'FooterController',
+                        controllerAs: 'FC'
                     }
+                }
             })
             .state('root.todos', {
                 abstract: true,
@@ -193,16 +205,18 @@
                     'content@': {
                         templateUrl: 'core/profile/profile.template.html',
                         controller: 'ProfileController',
-                        controllerAs: 'user'
+                        controllerAs: 'vm'
                     }
                 }
-            });       
-                
+            });
+
         $urlRouterProvider.otherwise('/');
 
         $locationProvider.hashPrefix('');
-    
+
         // Comment out the line below to run the app without HTML5 mode (will use hashes in routes)
         $locationProvider.html5Mode(true);
+
+        // $httpProvider.interceptors.push('jwtInterceptor');
     }
 })();

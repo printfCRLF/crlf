@@ -10,13 +10,15 @@
 
   function authService($state, angularAuth0, $timeout) {
 
+    var userProfile;
+
     function login() {
       angularAuth0.authorize();
     }
     
     function handleAuthentication() {
       angularAuth0.parseHash(function(err, authResult) {
-        if (authResult && authResult.accessToken && authResult.idToken) {
+        if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('root.profile');
         } else if (err) {
@@ -27,6 +29,27 @@
           alert('Error: ' + err.error + '. Check the console for further details.');
         }
       });
+    }
+
+    function getProfile(cb) {
+      var accessToken = localStorage.getItem('access_token');
+      if (!accessToken) {
+        throw new Error('Access token must exist to fetch profile');
+      }
+      angularAuth0.client.userInfo(accessToken, function(err, profile) {
+        if (profile) {
+          setUserProfile(profile);
+        }
+        cb(err, profile);
+      });
+    }
+
+    function setUserProfile(profile) {
+      userProfile = profile;
+    }
+
+    function getCachedProfile() {
+      return userProfile;
     }
 
     function setSession(authResult) {
@@ -42,19 +65,20 @@
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      $state.go('home');
+      $state.go('root.profile');
     }
     
     function isAuthenticated() {
       // Check whether the current time is past the 
       // access token's expiry time
       let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-      let result =  new Date().getTime() < expiresAt;
-      return result;
+      return new Date().getTime() < expiresAt;
     }
 
     return {
       login: login,
+      getProfile: getProfile,
+      getCachedProfile: getCachedProfile,
       handleAuthentication: handleAuthentication,
       logout: logout,
       isAuthenticated: isAuthenticated
