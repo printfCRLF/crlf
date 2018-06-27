@@ -11,9 +11,11 @@
             controllerAs: 'toolbar'
         };
     }
-        
-    function toolbarController() {
-
+    
+    toolbarController.$inject = ['authService'];
+    function toolbarController(authService) {
+        var vm = this;
+        vm.auth = authService;
     }
 
     // toolbarController.$inject = ['auth', 'store', '$location'];
@@ -40,5 +42,5 @@
     //         $location.path('/home');
     //     }
     // }
-    
+
 })();

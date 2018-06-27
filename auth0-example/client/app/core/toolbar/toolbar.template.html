@@ -1,28 +1,27 @@
-<!-- <md-toolbar>
-    <div class="md-toolbar-tools">
-        <h2>
-            <span>Angular Auth</span>
-        </h2>
-
-        <span flex></span>
-
-        <md-button>Login</md-button>
-        <md-button>Profile</md-button>
-        <md-button>Logout</md-button>
-    </div>
-</md-toolbar> -->
-
 <ul class="nav navbar-nav">
     <li >
         <a  
             id="login-link" 
             aria-label="Login"
-            ng-click="toobar.login()">Log in</a>
+            ng-if="!toolbar.auth.isAuthenticated()"
+            ng-click="toolbar.auth.login()">Log in</a>
     </li>
+        
+    <li >
+        <a  
+            id="profile-link" 
+            aria-label="Profile"
+            ui-sref="root.profile"
+            ng-class="MC.getClass('root.profile')"
+            ng-if="toolbar.auth.isAuthenticated()">Profile</a>
+    </li>
+
     <li >
         <a 
             id="logout-link"
             aria-label="Logout"
-            ng-click="toolbar.logout()">Log out</a>
+            ng-if="toolbar.auth.isAuthenticated()"
+            ng-click="toolbar.auth.logout()">Log out</a>
     </li>
+
 </ul>
