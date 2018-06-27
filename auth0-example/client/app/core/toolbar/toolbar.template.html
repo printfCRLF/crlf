@@ -1,4 +1,4 @@
-<md-toolbar>
+<!-- <md-toolbar>
     <div class="md-toolbar-tools">
         <h2>
             <span>Angular Auth</span>
@@ -10,4 +10,19 @@
         <md-button>Profile</md-button>
         <md-button>Logout</md-button>
     </div>
-</md-toolbar>
+</md-toolbar> -->
+
+<ul class="nav navbar-nav">
+    <li >
+        <a  
+            id="login-link" 
+            aria-label="Login"
+            ng-click="toobar.login()">Log in</a>
+    </li>
+    <li >
+        <a 
+            id="logout-link"
+            aria-label="Logout"
+            ng-click="toolbar.logout()">Log out</a>
+    </li>
+</ul>

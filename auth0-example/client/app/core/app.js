@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('app', [
-        'auth0', 
+        // 'auth0', 
+        'auth0.auth0',
         'angular-storage', 
         'angular-jwt', 
         'ngMaterial',
@@ -22,5 +23,6 @@
         'app.directives.about',
         'app.filters',        
         'app.form',
+        'app.toolbar',
     ]);
 })();

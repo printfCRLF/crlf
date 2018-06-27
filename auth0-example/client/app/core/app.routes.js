@@ -2,12 +2,21 @@
     'use strict';
 
     angular.module('app')
-
             .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider', 
+        '$provide', 'angularAuth0Provider', '$httpProvider', 'jwtInterceptorProvider'];
+    // config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, 
+        $provide, angularAuth0Provider, $httpProvider, jwtInterceptorProvider) {
+    // function config($stateProvider, $urlRouterProvider) {
+
+        angularAuth0Provider.init({
+            domain: 'printfcrlf.eu.auth0.com', 
+            clientID: 'a4l404mFSI-yFGCHezGG8m-ISS33SGSd'
+        });
+
         $urlRouterProvider.when('', '/todos/list');
         $urlRouterProvider.when('/', '/todos/list');
         $urlRouterProvider.when('/todos', '/todos/list');
