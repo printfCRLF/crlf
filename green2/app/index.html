@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/animate.css">
     </head>
-    <body data-ng-controller="IndexController as IC">
+    <body data-ng-controller="IndexController as IC" ng-init="hello = 'hello world!'">
+
+        {{hello}}
+        
         <div class="container">
             <header data-ui-view="header"></header>
             <nav data-ui-view="menu" role="navigation"></nav>
@@ -39,6 +42,14 @@
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+        <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+        <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+        <script type="text/javascript" src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+        <script type="text/javascript" src="bower_components/auth0-angular/build/auth0-angular.js"></script>
+        
+
         <!-- Application scripts: -->
         <script src="core/app.js"></script>
         <script src="core/app.routes.js"></script>

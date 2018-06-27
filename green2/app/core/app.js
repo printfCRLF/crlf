@@ -2,6 +2,10 @@
     'use strict';
 
     angular.module('app', [
+        'auth0', 
+        'angular-storage', 
+        'angular-jwt', 
+        'ngMaterial',
         'ui.router',
         'app.index',
         'app.form',
