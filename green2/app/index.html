@@ -17,8 +17,12 @@
     </head>
     <body data-ng-controller="IndexController as IC" ng-init="hello = 'hello world!'">
 
-        {{hello}}
-        
+        <!-- <toolbar></toolbar>
+
+        <div layout-padding>
+            <ui-view></ui-view>
+        </div> -->
+
         <div class="container">
             <header data-ui-view="header"></header>
             <nav data-ui-view="menu" role="navigation"></nav>
@@ -51,6 +55,8 @@
         
 
         <!-- Application scripts: -->
+        
+
         <script src="core/app.js"></script>
         <script src="core/app.routes.js"></script>
         <script src="core/indexController.js"></script>
@@ -68,6 +74,10 @@
         <script src="core/todos/newController.js"></script>
         <script src="core/todos/todosService.js"></script>
         <script src="core/todos/listController.js"></script>
+
+        <!-- <script src="core/toolbar/toolbar.directive.js"></script> -->
+        <script src="core/profile/profile.controller.js"></script>
+        
         <script src="common/directives/aboutDirective.js"></script>
         <script src="common/directives/datepickerDirective.js"></script>
         <script src="common/constants/constants.js"></script>

@@ -8,8 +8,8 @@
         'ngMaterial',
         'ui.router',
         'app.index',
-        'app.form',
         'app.json',
+        'app.profile',
         'app.mountains.details',
         'app.mountains.list',
         'app.nav.breadcrumbs',
@@ -20,6 +20,7 @@
         'app.todos.list',
         'app.directives.datepicker',
         'app.directives.about',
-        'app.filters'
+        'app.filters',        
+        'app.form',
     ]);
 })();

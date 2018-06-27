@@ -14,6 +14,7 @@
         $urlRouterProvider.when('/todos/', '/todos/list');
         $urlRouterProvider.when('/mountains', '/mountains/list');
         $urlRouterProvider.when('/mountains/', '/mountains/list');
+
         $urlRouterProvider.otherwise('/');
         $stateProvider
                 .state('root', {
@@ -156,6 +157,32 @@
                             controllerAs: 'FC'
                         }
                     }
-                });
+                })
+                .state('root.home', {
+                    url: 'home',
+                    data: {
+                        title: 'Home',
+                        breadcrumb: 'Home'
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'core/home/home.template.html',
+                        }
+                    }
+                })
+                .state('root.profile', {
+                    url: 'profile',
+                    data: {
+                        title: 'Profile',
+                        breadcrumb: 'Profile'
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'core/profile/profile.template.html',
+                            controller: 'ProfileController',
+                            controllerAs: 'user'
+                        }
+                    }
+                });               
     }
 })();
