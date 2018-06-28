@@ -1,0 +1,27 @@
+<ul class="nav navbar-nav">
+    <li >
+        <a  
+            id="login-link" 
+            aria-label="Login"
+            ng-if="!toolbar.auth.isAuthenticated()"
+            ng-click="toolbar.auth.login()">Log in</a>
+    </li>
+        
+    <li >
+        <a  
+            id="profile-link" 
+            aria-label="Profile"
+            ui-sref="root.profile"
+            ng-class="MC.getClass('root.profile')"
+            ng-if="toolbar.auth.isAuthenticated()">Profile</a>
+    </li>
+
+    <li >
+        <a 
+            id="logout-link"
+            aria-label="Logout"
+            ng-if="toolbar.auth.isAuthenticated()"
+            ng-click="toolbar.auth.logout()">Log out</a>
+    </li>
+
+</ul>

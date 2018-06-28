@@ -7,6 +7,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>AngularJS Template</title>
+        <base href="/#">
         <meta name="description" content="AngularJS Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="">
@@ -15,7 +16,14 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/animate.css">
     </head>
-    <body data-ng-controller="IndexController as IC">
+    <body data-ng-controller="IndexController as IC" ng-init="hello = 'hello world!'">
+
+        <!-- <toolbar></toolbar>
+
+        <div layout-padding>
+            <ui-view></ui-view>
+        </div> -->
+
         <div class="container">
             <header data-ui-view="header"></header>
             <nav data-ui-view="menu" role="navigation"></nav>
@@ -39,8 +47,21 @@
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+        <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+        <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+        <script type="text/javascript" src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+        <!-- <script type="text/javascript" src="bower_components/auth0-angular/build/auth0-angular.js"></script> -->
+        
+        <script type="text/javascript" src="bower_components/auth0.js/build/auth0.js"></script>
+        <script type="text/javascript" src="bower_components/angular-auth0/dist/angular-auth0.js"></script>        
+
         <!-- Application scripts: -->
+        
+
         <script src="core/app.js"></script>
+        <script src="core/app.run.js"></script>
         <script src="core/app.routes.js"></script>
         <script src="core/indexController.js"></script>
         <script src="core/form/formController.js"></script>
@@ -57,6 +78,12 @@
         <script src="core/todos/newController.js"></script>
         <script src="core/todos/todosService.js"></script>
         <script src="core/todos/listController.js"></script>
+
+        <script src="core/toolbar/toolbar.directive.js"></script>
+        <script src="core/profile/profile.controller.js"></script>
+        <script src="core/auth/auth.service.js"></script>
+        <script src="auth0-variables.js"></script>
+        
         <script src="common/directives/aboutDirective.js"></script>
         <script src="common/directives/datepickerDirective.js"></script>
         <script src="common/constants/constants.js"></script>
