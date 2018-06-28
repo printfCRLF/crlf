@@ -4,18 +4,18 @@
     angular.module('app')
         .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider',
-        '$locationProvider',
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider',
         '$provide', 'angularAuth0Provider', '$httpProvider',
         'jwtInterceptorProvider', 'jwtOptionsProvider'];
 
-    function config($stateProvider, $urlRouterProvider,
-        $locationProvider,
-        $provide, angularAuth0Provider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider,
+        $provide, angularAuth0Provider, $httpProvider, 
+        jwtInterceptorProvider, jwtOptionsProvider) {
 
         configRoutes($urlRouterProvider);
         configStates($stateProvider);
-        configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, jwtInterceptorProvider, $httpProvider);
+        configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider, 
+            jwtOptionsProvider, jwtInterceptorProvider, $httpProvider);
     }
 
     function configRoutes($urlRouterProvider) {
@@ -203,16 +203,27 @@
     }
 
     function configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider,
-        jwtOptionsProvider, jwtInterceptorProvider, $httpProvider
-    ) {
+        jwtOptionsProvider, jwtInterceptorProvider, $httpProvider) {
         angularAuth0Provider.init({
             clientID: AUTH0_CLIENT_ID,
             domain: AUTH0_DOMAIN,
             responseType: 'token id_token',
             audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
             redirectUri: AUTH0_CALLBACK_URL,
-            scope: 'openid profile'
+            scope: 'openid profile read:messages'
         });
+
+        jwtOptionsProvider.config({
+            tokenGetter: function () {
+                // return localStorage.getItem('access_token');
+                // var token = localStorage.getItem('access_token');
+                var token = localStorage.getItem('id_token');
+                return token;
+            },
+            whiteListedDomains: ['localhost']
+        });
+
+        $httpProvider.interceptors.push('jwtInterceptor');
 
         // jwtOptionsProvider.config({
         //     whiteListedDomains: ['api.myapp.com', 'localhost']
@@ -225,6 +236,8 @@
         //     return store.get('id_token');
         // }
 
+        // $httpProvider.interceptors.push('jwtInterceptor');
+
         $urlRouterProvider.otherwise('/');
 
         $locationProvider.hashPrefix('');
@@ -232,6 +245,6 @@
         // Comment out the line below to run the app without HTML5 mode (will use hashes in routes)
         $locationProvider.html5Mode(true);
 
-        // $httpProvider.interceptors.push('jwtInterceptor');
+        
     }
 })();
