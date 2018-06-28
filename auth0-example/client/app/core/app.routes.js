@@ -13,26 +13,12 @@
         $locationProvider,
         $provide, angularAuth0Provider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider) {
 
-        angularAuth0Provider.init({
-            clientID: AUTH0_CLIENT_ID,
-            domain: AUTH0_DOMAIN,
-            responseType: 'token id_token',
-            audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-            redirectUri: AUTH0_CALLBACK_URL,
-            scope: 'openid profile'
-        });
+        configRoutes($urlRouterProvider);
+        configStates($stateProvider);
+        configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, jwtInterceptorProvider, $httpProvider);
+    }
 
-        // jwtOptionsProvider.config({
-        //     whiteListedDomains: ['api.myapp.com', 'localhost']
-        // });
-
-        // jwtInterceptorProvider.tokenGetter = tokenGetter;
-
-        // tokenGetter.$inject = ['store'];
-        // function tokenGetter(store) {
-        //     return store.get('id_token');
-        // }
-
+    function configRoutes($urlRouterProvider) {
         $urlRouterProvider.when('', '/todos/list');
         $urlRouterProvider.when('/', '/todos/list');
         $urlRouterProvider.when('/todos', '/todos/list');
@@ -41,6 +27,10 @@
         $urlRouterProvider.when('/mountains/', '/mountains/list');
 
         // $urlRouterProvider.otherwise('/');
+
+    }
+
+    function configStates($stateProvider) {
         $stateProvider
             .state('root', {
                 abstract: true,
@@ -209,6 +199,31 @@
                     }
                 }
             });
+
+    }
+
+    function configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider,
+        jwtOptionsProvider, jwtInterceptorProvider, $httpProvider
+    ) {
+        angularAuth0Provider.init({
+            clientID: AUTH0_CLIENT_ID,
+            domain: AUTH0_DOMAIN,
+            responseType: 'token id_token',
+            audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
+            redirectUri: AUTH0_CALLBACK_URL,
+            scope: 'openid profile'
+        });
+
+        // jwtOptionsProvider.config({
+        //     whiteListedDomains: ['api.myapp.com', 'localhost']
+        // });
+
+        // jwtInterceptorProvider.tokenGetter = tokenGetter;
+
+        // tokenGetter.$inject = ['store'];
+        // function tokenGetter(store) {
+        //     return store.get('id_token');
+        // }
 
         $urlRouterProvider.otherwise('/');
 
