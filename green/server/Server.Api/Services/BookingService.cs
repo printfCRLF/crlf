@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Server.Api.Dal;
 
@@ -7,12 +8,14 @@ namespace Server.Api.Services
     public class BookingService
     {
         private GreenContext _context;
+        public int MonthlyBookingLimitation { get; set; }
 
         public BookingService(GreenContext greenContext)
         {
             _context = greenContext;
+            MonthlyBookingLimitation = 3;
         }
-        
+
         public bool Book(User user, Booking booking)
         {
             var userExists = _context.Users.Any(u => u.ProfileId == user.ProfileId);
@@ -22,23 +25,61 @@ namespace Server.Api.Services
             }
             _context.SaveChanges();
 
-            var isBooked = _context.Bookings.Any(b => b.Date == booking.Date
-                                       && b.StartTime == booking.StartTime
-                                       && b.EndTime == booking.EndTime);
+            var hasBooked3Times = HasBookedNTimes(user, booking, MonthlyBookingLimitation);
+            if (hasBooked3Times)
+            {
+                throw new MonthlyBookingLimitationReachedException
+                {
+                    User = user,
+                    Booking = booking, 
+                    NumberOfTimes = MonthlyBookingLimitation
+                };
+            }
+
+            var isBooked = IsBooked(booking);
+
             if (isBooked)
             {
-                return false;
+                throw new TimeSlotNotAvailableException
+                {
+                    User = user, 
+                    Booking = booking
+                };
             }
+
+            booking.User = user;
+            booking.UserId = user.Id;
 
             _context.Bookings.Add(booking);
             _context.SaveChanges();
-            
+
             return true;
         }
 
         public IEnumerable<Booking> Get()
         {
             return _context.Bookings.ToList();
+        }
+
+        public IEnumerable<Booking> Get(DateTime startDate, DateTime endDate)
+        {
+            return _context.Bookings.Where(b => b.Date >= startDate && b.Date <= endDate);
+        }
+
+        public bool IsBooked(Booking booking)
+        {
+            var isBooked = _context.Bookings.Any(
+                b => b.Date == booking.Date
+                     && b.StartTime == booking.StartTime
+                     && b.EndTime == booking.EndTime);
+            return isBooked;
+        }
+
+        public bool HasBookedNTimes(User user, Booking booking, int n)
+        {
+            var c = _context.Bookings.Count(b => b.User.ProfileId == user.ProfileId &&
+                                                 b.Date.Month == booking.Date.Month);
+            return c >= n;
         }
     }
 }
