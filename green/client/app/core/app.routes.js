@@ -19,8 +19,10 @@
     }
 
     function configRoutes($urlRouterProvider) {
-        $urlRouterProvider.when('', '/todos/list');
-        $urlRouterProvider.when('/', '/todos/list');
+        $urlRouterProvider.when('', '/home');
+        $urlRouterProvider.when('/', '/home');
+        //$urlRouterProvider.when('', '/todos/list');
+        //$urlRouterProvider.when('/', '/todos/list');
         $urlRouterProvider.when('/todos', '/todos/list');
         $urlRouterProvider.when('/todos/', '/todos/list');
         $urlRouterProvider.when('/mountains', '/mountains/list');
@@ -225,19 +227,6 @@
         });
 
         $httpProvider.interceptors.push('jwtInterceptor');
-
-        // jwtOptionsProvider.config({
-        //     whiteListedDomains: ['api.myapp.com', 'localhost']
-        // });
-
-        // jwtInterceptorProvider.tokenGetter = tokenGetter;
-
-        // tokenGetter.$inject = ['store'];
-        // function tokenGetter(store) {
-        //     return store.get('id_token');
-        // }
-
-        // $httpProvider.interceptors.push('jwtInterceptor');
 
         $urlRouterProvider.otherwise('/');
 
