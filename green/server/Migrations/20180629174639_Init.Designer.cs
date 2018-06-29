@@ -10,8 +10,8 @@ using server.Dal;
 namespace server.Migrations
 {
     [DbContext(typeof(GreenContext))]
-    [Migration("20180629173915_init")]
-    partial class init
+    [Migration("20180629174639_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace server.Migrations
 
                     b.Property<DateTime>("StartTime");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -59,9 +59,10 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Dal.Booking", b =>
                 {
-                    b.HasOne("server.Dal.User")
+                    b.HasOne("server.Dal.User", "User")
                         .WithMany("Bookings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

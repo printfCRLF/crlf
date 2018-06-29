@@ -31,7 +31,7 @@ namespace server.Migrations
 
                     b.Property<DateTime>("StartTime");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -57,9 +57,10 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Dal.Booking", b =>
                 {
-                    b.HasOne("server.Dal.User")
+                    b.HasOne("server.Dal.User", "User")
                         .WithMany("Bookings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

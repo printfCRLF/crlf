@@ -16,5 +16,9 @@ namespace server.Dal
         public DateTime Date { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+
+        // Navigational properties
+        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }
