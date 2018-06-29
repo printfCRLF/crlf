@@ -12,8 +12,8 @@
         };
     }
 
-    calendarController.$inject = ['uiCalendarConfig'];
-    function calendarController(uiCalendarConfig) {
+    calendarController.$inject = ['uiCalendarConfig', 'eventService'];
+    function calendarController(uiCalendarConfig, eventService) {
         var vm = this;
 
         init();
@@ -21,26 +21,7 @@
         function init() {
             vm.message = "Hello from CalendarController";
 
-            vm.events = [
-                {
-                    title: 'Bowen Sui',
-                    start: '2018-06-29 00:00:00',
-                    end: '2018-06-29 07:59:59',
-                    color: 'yellow'
-                },
-                {
-                    title: 'Mr Green',
-                    start: '2018-06-29 00:08:00',
-                    end: '2018-06-29 15:59:59',
-                    color: 'green'
-                },
-                {
-                    title: 'Mr Green',
-                    start: '2018-06-27 00:08:00',
-                    end: '2018-06-27 15:59:59',
-                    color: 'green'
-                },
-            ];
+            vm.events = eventService.getAllEvents();
 
             vm.alertOnEventClick = function () {
                 console.log("alertOnEventClick");
