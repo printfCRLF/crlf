@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using server.Dal;
+using Server.Api.Dal;
 
-namespace server.Services
+namespace Server.Api.Services
 {
     public class BookingService
     {

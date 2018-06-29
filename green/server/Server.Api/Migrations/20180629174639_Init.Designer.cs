@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using server.Dal;
+using Server.Api.Dal;
 
-namespace server.Migrations
+namespace Server.Api.Migrations
 {
     [DbContext(typeof(GreenContext))]
     [Migration("20180629174639_Init")]

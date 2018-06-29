@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using server.Dal;
+using Server.Api.Dal;
 
-namespace WebAPIApplication
+namespace Server.Api
 {
     public class Startup
     {

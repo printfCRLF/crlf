@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebAPIApplication
+namespace Server.Api
 {
     public class HasScopeHandler : AuthorizationHandler<HasScopeRequirement>
     {
