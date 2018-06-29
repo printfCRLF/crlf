@@ -182,6 +182,8 @@
                 views: {
                     'content@': {
                         templateUrl: 'core/home/home.template.html',
+                        controller: 'HomeController',
+                        controllerAs: 'vm'
                     }
                 }
             })
@@ -199,7 +201,6 @@
                     }
                 }
             });
-
     }
 
     function configAuth0(angularAuth0Provider, $urlRouterProvider, $locationProvider,

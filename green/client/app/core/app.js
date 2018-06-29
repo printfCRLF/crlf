@@ -2,7 +2,6 @@
     'use strict';
 
     angular.module('app', [
-        // 'auth0', 
         'auth0.auth0',
         'angular-storage', 
         'angular-jwt', 
@@ -10,7 +9,6 @@
         'ui.router',
         'app.index',
         'app.json',
-        'app.profile',
         'app.mountains.details',
         'app.mountains.list',
         'app.nav.breadcrumbs',
@@ -24,5 +22,9 @@
         'app.filters',        
         'app.form',
         'app.toolbar',
+        'app.profile',
+        'app.home',
+        'app.calendar',
+        'ui.calendar'
     ]);
 })();
