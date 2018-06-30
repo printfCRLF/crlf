@@ -8,6 +8,7 @@
         'ngMaterial',
         'ngResource',
         'ui.router',
+        'ui.calendar',
         'app.index',
         'app.json',
         'app.mountains.details',
@@ -25,7 +26,6 @@
         'app.toolbar',
         'app.profile',
         'app.home',
-        'app.calendar',
-        'ui.calendar'
+        'app.calendar'
     ]);
 })();

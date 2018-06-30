@@ -29,7 +29,6 @@
         $urlRouterProvider.when('/mountains/', '/mountains/list');
 
         // $urlRouterProvider.otherwise('/');
-
     }
 
     function configStates($stateProvider) {

@@ -12,31 +12,26 @@
         };
     }
 
-    calendarController.$inject = ['uiCalendarConfig', 'eventService'];
-    function calendarController(uiCalendarConfig, eventService) {
+    calendarController.$inject = ['uiCalendarConfig', 'eventService2'];
+    function calendarController(uiCalendarConfig, eventService2) {
         var vm = this;
 
         init();
+        loaded();
 
         function init() {
-            vm.message = "Hello from CalendarController";
-
-            vm.events = eventService.getAllEvents();
+            vm.events = [];
 
             vm.alertOnEventClick = function () {
-                console.log("alertOnEventClick");
+                console.log('alertOnEventClick');
             };
             vm.alertOnDrop = function () { };
             vm.alertOnResize = function () { };
             vm.eventRender = function () { };
 
             vm.dayClick = function () {
-                console.log("dayClick");
+                console.log('dayClick');
                 printMyCalendar();
-            };
-
-            vm.eventAfterAllRender = function () {
-                //printMyCalendar();
             };
 
             vm.uiConfig = {
@@ -66,6 +61,19 @@
                 vm.cal.fullCalendar('gotoDate', moment());
 
             }
+        }
+
+        function loaded() {
+            eventService2.getAllEvents().then(function (response) {
+                _(response.data).each(function (booking) {
+                    vm.events.push({
+                        title: booking.user.name,
+                        profileId: booking.user.profileId,
+                        start: booking.startTime,
+                        end: booking.endTime
+                    });
+                });
+            });
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Server.Api.Dal;
 using Server.Api.Services.Exceptions;
 
@@ -19,12 +20,15 @@ namespace Server.Api.Services
 
         public IEnumerable<Booking> Get()
         {
-            return _context.Bookings.ToList();
+            return _context.Bookings
+                .Include(b => b.User).ToList();
         }
 
         public IEnumerable<Booking> Get(DateTime startDate, DateTime endDate)
         {
-            return _context.Bookings.Where(b => b.Date >= startDate && b.Date <= endDate);
+            return _context.Bookings
+                .Where(b => b.Date >= startDate && b.Date <= endDate)
+                .Include(b => b.User).ToList();
         }
 
         public bool Book(User user, Booking booking)

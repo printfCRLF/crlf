@@ -29,7 +29,7 @@ namespace Server.Tests
 
         public void Dispose()
         {
-            CleanupDatabase();
+            //CleanupDatabase();
 
             Context?.Dispose();
         }

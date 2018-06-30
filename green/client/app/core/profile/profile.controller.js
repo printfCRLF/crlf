@@ -16,7 +16,7 @@
         vm.getMessage = getMessage;
         vm.getSecretMessage = getSecretMessage;
 
-        vm.profile;
+        vm.profile = undefined;
 
         if (authService.getCachedProfile()) {
             vm.profile = authService.getCachedProfile();
