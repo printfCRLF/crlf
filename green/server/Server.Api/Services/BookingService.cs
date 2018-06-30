@@ -34,7 +34,7 @@ namespace Server.Api.Services
             {
                 _context.Users.Add(user);
             }
-            
+
             var hasBooked3Times = HasBookedNTimes(user, booking, MonthlyBookingLimitation);
             if (hasBooked3Times)
             {
@@ -71,16 +71,16 @@ namespace Server.Api.Services
             var userExists = _context.Users.Any(u => u.ProfileId == user.ProfileId);
             if (!userExists)
             {
-                throw new UnbookFailedException
+                throw new UserNotExistException
                 {
                     User = user,
                     Booking = booking
                 };
             }
 
-            if (!HasBookedNTimes(user, booking, 1))
+            if (!IsBooked(user, booking))
             {
-                throw new UnbookFailedException
+                throw new BookingNotFoundException
                 {
                     User = user,
                     Booking = booking
@@ -98,7 +98,7 @@ namespace Server.Api.Services
             return true;
         }
 
-        public bool IsBooked(Booking booking)
+        private bool IsBooked(Booking booking)
         {
             var isBooked = _context.Bookings.Any(
                 b => b.Date == booking.Date
@@ -107,7 +107,17 @@ namespace Server.Api.Services
             return isBooked;
         }
 
-        public bool HasBookedNTimes(User user, Booking booking, int n)
+        private bool IsBooked(User user, Booking booking)
+        {
+            var isBooked = _context.Bookings.Any(
+                b => b.User.ProfileId == user.ProfileId
+                     && b.Date == booking.Date
+                     && b.StartTime == booking.StartTime
+                     && b.EndTime == booking.EndTime);
+            return isBooked;
+        }
+
+        private bool HasBookedNTimes(User user, Booking booking, int n)
         {
             var c = _context.Bookings.Count(b => b.User.ProfileId == user.ProfileId &&
                                                  b.Date.Month == booking.Date.Month);

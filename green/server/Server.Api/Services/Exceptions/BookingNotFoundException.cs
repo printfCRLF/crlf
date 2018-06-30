@@ -6,7 +6,7 @@ using Server.Api.Dal;
 
 namespace Server.Api.Services.Exceptions
 {
-    public class UnbookFailedException : Exception
+    public class BookingNotFoundException : Exception
     {
         public User User { get; set; }
 

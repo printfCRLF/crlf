@@ -12,9 +12,52 @@ namespace Server.Tests.BookingServiceTests
 {
     public class BookTests: BaseTest
     {
+        private readonly User user1, user2;
+        private readonly DateTime date1, date2;
+        private readonly Booking b1, b2, b3, b4;
+        
         public BookTests()
         {
+            user1 = new User
+            {
+                Name = "Bowen",
+                ProfileId = Guid.NewGuid().ToString()
+            };
 
+            user2 = new User
+            {
+                Name = "Mr Green",
+                ProfileId = Guid.NewGuid().ToString()
+            };
+
+            date1 = new DateTime(2018, 6, 1);
+            date2 = new DateTime(2018, 6, 29);
+
+            b1 = new Booking
+            {
+                Date = date1,
+                StartTime = date1.MorningStart(),
+                EndTime = date1.MorningEnd()
+            };
+            b2 = new Booking
+            {
+                Date = date1,
+                StartTime = date1.NoonStart(),
+                EndTime = date1.NoonEnd()
+            };
+
+            b3 = new Booking
+            {
+                Date = date2,
+                StartTime = date2.EveningStart(),
+                EndTime = date2.EveningEnd()
+            };
+            b4 = new Booking
+            {
+                Date = date2,
+                StartTime = date2.MorningStart(),
+                EndTime = date2.MorningEnd()
+            };
         }
 
         [Fact]
@@ -22,28 +65,9 @@ namespace Server.Tests.BookingServiceTests
         {
             // Arrange 
             var service = new BookingService(Context);
-            var user1 = new User
-            {
-                Name = "Bowen",
-                ProfileId = Guid.NewGuid().ToString()
-            };
-
-            var date = new DateTime(2018, 6, 1);
-            var b1 = new Booking
-            {
-                Date = date,
-                StartTime = date.MorningStart(),
-                EndTime = date.MorningEnd()
-            };
-            var b2 = new Booking
-            {
-                Date = date,
-                StartTime = date.NoonStart(),
-                EndTime = date.NoonEnd()
-            };
 
             // Act
-            var bookings = Context.Bookings.Where(b => b.Date == date).ToList();
+            var bookings = Context.Bookings.Where(b => b.Date == date1).ToList();
             Context.Bookings.RemoveRange(bookings);
             Context.SaveChanges();
 
@@ -51,7 +75,7 @@ namespace Server.Tests.BookingServiceTests
             service.Book(user1, b2);
 
             // Assert
-            bookings = service.Get().Where(b => b.Date == date).ToList();
+            bookings = service.Get().Where(b => b.Date == date1).ToList();
             Assert.Equal(2, bookings.Count);
 
         }
@@ -62,27 +86,9 @@ namespace Server.Tests.BookingServiceTests
 
             // Arrange 
             var service = new BookingService(Context);
-            var user1 = new User
-            {
-                Name = "Bowen Sui",
-                ProfileId = Guid.NewGuid().ToString()
-            };
-            var user2 = new User
-            {
-                Name = "Mr Green",
-                ProfileId = Guid.NewGuid().ToString()
-            };
-
-            var date = new DateTime(2018, 6, 2);
-            var b1 = new Booking
-            {
-                Date = date,
-                StartTime = date.MorningStart(),
-                EndTime = date.MorningEnd()
-            };
-
+            
             // Act
-            var bookings = Context.Bookings.Where(b => b.Date == date).ToList();
+            var bookings = Context.Bookings.Where(b => b.Date == date1).ToList();
             Context.Bookings.RemoveRange(bookings);
             Context.SaveChanges();
 
@@ -106,37 +112,6 @@ namespace Server.Tests.BookingServiceTests
         {
             // Arrange 
             var service = new BookingService(Context);
-            var user1 = new User
-            {
-                ProfileId = Guid.NewGuid().ToString()
-            };
-
-            var date1 = new DateTime(2018, 6, 1);
-            var date2 = new DateTime(2018, 6, 29);
-            var b1 = new Booking
-            {
-                Date = date1,
-                StartTime = date1.MorningStart(),
-                EndTime = date1.MorningEnd()
-            };
-            var b2 = new Booking
-            {
-                Date = date1,
-                StartTime = date1.NoonStart(),
-                EndTime = date1.NoonEnd()
-            };
-            var b3 = new Booking
-            {
-                Date = date2,
-                StartTime = date2.EveningStart(),
-                EndTime = date2.EveningEnd()
-            };
-            var b4 = new Booking
-            {
-                Date = date2,
-                StartTime = date2.MorningStart(),
-                EndTime = date2.MorningEnd()
-            };
 
             // Act
             var bookings = Context.Bookings.Where(b => b.Date == date1 || b.Date == date2).ToList();
