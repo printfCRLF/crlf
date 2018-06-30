@@ -35,6 +35,7 @@
     "angular-ui-calendar": "^1.0.2",
     "angular-resource": "^1.7.2",
     "underscore": "^1.9.1",
+    "fullcalendar": "^3.9.0"
   },
   "private": false
 }

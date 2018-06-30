@@ -3,12 +3,11 @@
 
     angular.module('app', [
         'auth0.auth0',
-        'angular-storage', 
-        'angular-jwt', 
+        'angular-storage',
+        'angular-jwt',
         'ngMaterial',
         'ngResource',
         'ui.router',
-        'ui.calendar',
         'app.index',
         'app.json',
         'app.mountains.details',
@@ -21,11 +20,12 @@
         'app.todos.list',
         'app.directives.datepicker',
         'app.directives.about',
-        'app.filters',        
+        'app.filters',
         'app.form',
         'app.toolbar',
         'app.profile',
         'app.home',
-        'app.calendar'
+        'app.calendar',
+        'ui.calendar'
     ]);
 })();
