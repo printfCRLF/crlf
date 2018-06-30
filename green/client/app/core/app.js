@@ -6,6 +6,7 @@
         'angular-storage', 
         'angular-jwt', 
         'ngMaterial',
+        'ngResource',
         'ui.router',
         'app.index',
         'app.json',

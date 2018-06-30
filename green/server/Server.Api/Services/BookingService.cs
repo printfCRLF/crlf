@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Server.Api.Dal;
+using Server.Api.Services.Exceptions;
 
 namespace Server.Api.Services
 {
@@ -16,6 +17,16 @@ namespace Server.Api.Services
             MonthlyBookingLimitation = 3;
         }
 
+        public IEnumerable<Booking> Get()
+        {
+            return _context.Bookings.ToList();
+        }
+
+        public IEnumerable<Booking> Get(DateTime startDate, DateTime endDate)
+        {
+            return _context.Bookings.Where(b => b.Date >= startDate && b.Date <= endDate);
+        }
+
         public bool Book(User user, Booking booking)
         {
             var userExists = _context.Users.Any(u => u.ProfileId == user.ProfileId);
@@ -23,15 +34,14 @@ namespace Server.Api.Services
             {
                 _context.Users.Add(user);
             }
-            _context.SaveChanges();
-
+            
             var hasBooked3Times = HasBookedNTimes(user, booking, MonthlyBookingLimitation);
             if (hasBooked3Times)
             {
                 throw new MonthlyBookingLimitationReachedException
                 {
                     User = user,
-                    Booking = booking, 
+                    Booking = booking,
                     NumberOfTimes = MonthlyBookingLimitation
                 };
             }
@@ -42,7 +52,7 @@ namespace Server.Api.Services
             {
                 throw new TimeSlotNotAvailableException
                 {
-                    User = user, 
+                    User = user,
                     Booking = booking
                 };
             }
@@ -56,14 +66,36 @@ namespace Server.Api.Services
             return true;
         }
 
-        public IEnumerable<Booking> Get()
+        public bool Unbook(User user, Booking booking)
         {
-            return _context.Bookings.ToList();
-        }
+            var userExists = _context.Users.Any(u => u.ProfileId == user.ProfileId);
+            if (!userExists)
+            {
+                throw new UnbookFailedException
+                {
+                    User = user,
+                    Booking = booking
+                };
+            }
 
-        public IEnumerable<Booking> Get(DateTime startDate, DateTime endDate)
-        {
-            return _context.Bookings.Where(b => b.Date >= startDate && b.Date <= endDate);
+            if (!HasBookedNTimes(user, booking, 1))
+            {
+                throw new UnbookFailedException
+                {
+                    User = user,
+                    Booking = booking
+                };
+            }
+
+            var booked = _context.Bookings.First(
+                b => b.User.ProfileId == user.ProfileId &&
+                     b.Date == booking.Date &&
+                     b.StartTime == booking.StartTime &&
+                     b.EndTime == booking.EndTime);
+            _context.Bookings.Remove(booked);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public bool IsBooked(Booking booking)

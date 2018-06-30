@@ -32,10 +32,8 @@
     "angular-ui-router": "^1.0.18",
     "a0-angular-storage": "^0.0.15",
     "angular-auth0": "^3.0.1",
-    "angular-ui-calendar": "^1.0.2"
+    "angular-ui-calendar": "^1.0.2",
+    "angular-resource": "^1.7.2"
   },
-  "private": false,
-  "devDependencies": {
-    "angular": "^1.7.2"
-  }
+  "private": false
 }

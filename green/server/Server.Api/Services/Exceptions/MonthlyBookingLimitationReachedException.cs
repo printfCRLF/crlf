@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Server.Api.Dal;
 
-namespace Server.Api.Services
+namespace Server.Api.Services.Exceptions
 {
     public class MonthlyBookingLimitationReachedException : Exception
     {

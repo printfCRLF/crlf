@@ -5,25 +5,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Server.Api.Dal;
 using Server.Api.Services;
+using Server.Api.Services.Exceptions;
 using Xunit;
 
-namespace Server.Tests
+namespace Server.Tests.BookingServiceTests
 {
-    public class BookingServiceTests
+    public class BookTests: BaseTest
     {
-        private GreenContext _context;
-
-        public BookingServiceTests()
+        public BookTests()
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
-
-            var cs = builder.Build()["ConnectionStrings:GreenConnection"];
-            var options = new DbContextOptionsBuilder<GreenContext>()
-                .UseSqlServer(cs).Options;
-
-            _context = new GreenContext(options);
 
         }
 
@@ -31,9 +21,10 @@ namespace Server.Tests
         public void User1_Books_2Sessions()
         {
             // Arrange 
-            var service = new BookingService(_context);
+            var service = new BookingService(Context);
             var user1 = new User
             {
+                Name = "Bowen",
                 ProfileId = Guid.NewGuid().ToString()
             };
 
@@ -52,9 +43,9 @@ namespace Server.Tests
             };
 
             // Act
-            var bookings = _context.Bookings.Where(b => b.Date == date).ToList();
-            _context.Bookings.RemoveRange(bookings);
-            _context.SaveChanges();
+            var bookings = Context.Bookings.Where(b => b.Date == date).ToList();
+            Context.Bookings.RemoveRange(bookings);
+            Context.SaveChanges();
 
             service.Book(user1, b1);
             service.Book(user1, b2);
@@ -70,7 +61,7 @@ namespace Server.Tests
         {
 
             // Arrange 
-            var service = new BookingService(_context);
+            var service = new BookingService(Context);
             var user1 = new User
             {
                 Name = "Bowen Sui",
@@ -91,9 +82,9 @@ namespace Server.Tests
             };
 
             // Act
-            var bookings = _context.Bookings.Where(b => b.Date == date).ToList();
-            _context.Bookings.RemoveRange(bookings);
-            _context.SaveChanges();
+            var bookings = Context.Bookings.Where(b => b.Date == date).ToList();
+            Context.Bookings.RemoveRange(bookings);
+            Context.SaveChanges();
 
             var isBooked1 = service.Book(user1, b1);
             try
@@ -114,7 +105,7 @@ namespace Server.Tests
         public void OneUser_CannotBook_MoreThan3TimesInOneMonth()
         {
             // Arrange 
-            var service = new BookingService(_context);
+            var service = new BookingService(Context);
             var user1 = new User
             {
                 ProfileId = Guid.NewGuid().ToString()
@@ -148,9 +139,9 @@ namespace Server.Tests
             };
 
             // Act
-            var bookings = _context.Bookings.Where(b => b.Date == date1 || b.Date == date2).ToList();
-            _context.Bookings.RemoveRange(bookings);
-            _context.SaveChanges();
+            var bookings = Context.Bookings.Where(b => b.Date == date1 || b.Date == date2).ToList();
+            Context.Bookings.RemoveRange(bookings);
+            Context.SaveChanges();
 
             service.Book(user1, b1);
             service.Book(user1, b2);
