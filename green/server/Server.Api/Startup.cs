@@ -32,7 +32,11 @@ namespace Server.Api
                     builder =>
                     {
                         builder
-                        .WithOrigins("http://localhost:8002", "http://serverapi20180701081712.azurewebsites.net") 
+                        .WithOrigins("http://localhost:8002",
+                        "http://serverapi20180701081712.azurewebsites.net",
+                        "https://serverapi20180701081712.azurewebsites.net",
+                        "http://printfcrlf-green.azurewebsites.net/", "" +
+                        "https://printfcrlf-green.azurewebsites.net/")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
@@ -50,7 +54,7 @@ namespace Server.Api
                 options.Authority = domain;
                 options.Audience = Configuration["Auth0:ApiIdentifier"];
             });
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("read:messages", policy => policy.Requirements.Add(new HasScopeRequirement("read:messages", domain)));
@@ -59,7 +63,7 @@ namespace Server.Api
             // register the scope authorization handler
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
-            services.AddDbContext<GreenContext>(options => 
+            services.AddDbContext<GreenContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GreenConnection")));
         }
 

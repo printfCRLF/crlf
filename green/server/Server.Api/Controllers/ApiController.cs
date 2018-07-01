@@ -13,7 +13,7 @@ namespace Server.Api.Controllers
         {
             return Json(new
             {
-                Message = "Hello from a public endpoint! You don't need to be authenticated to see this."
+                Message = "Hello from a public Azure endpoint! You don't need to be authenticated to see this."
             });
         }
 
@@ -24,7 +24,7 @@ namespace Server.Api.Controllers
         {
             return Json(new
             {
-                Message = "Hello from a private endpoint! You need to be authenticated to see this."
+                Message = "Hello from a private Azure endpoint! You need to be authenticated to see this."
             });
         }
 
