@@ -1,12 +1,11 @@
-<div>
-    <div>
-        Slots for {{vm.selectedDate}}
-    </div>
+<div ng-show="vm.selectedDate">
+    <h3>
+        Slots for <i>{{vm.selectedDate}}</i>
+    </h3>
     <ul class="list-unstyled"
         ng-repeat="bookingSlot in vm.bookingSlots">
         <li>
-            <div class="alert alert-info">
-
+            <div class="alert alert-info" ng-style="vm.slotColor(bookingSlot)">
                 <!--<b> <input ng-model="e.title"></b>-->
                 <!--{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}-->
                 <div>
@@ -14,8 +13,14 @@
                 </div>
                 <span>{{bookingSlot.startTime | date:"HH:mm"}} - {{bookingSlot.endTime | date:"HH:mm"}}</span>
                 <div>
-                    <button ng-if="vm.canBook(bookingSlot)" ng-click="vm.book(bookingSlot)">Book</button>
-                    <button ng-if="vm.canUnbook(bookingSlot)" ng-click="vm.unbook(bookingSlot)">Unbook</button>
+                    <button ng-if="vm.canBook(bookingSlot)" ng-click="vm.book(bookingSlot)"
+                            ng-style="{'color': 'black'}">
+                        Book
+                    </button>
+                    <button ng-if="vm.canUnbook(bookingSlot)" ng-click="vm.unbook(bookingSlot)"
+                            ng-style="{'color': 'black'}">
+                        Unbook
+                    </button>
                 </div>
             </div>
         </li>

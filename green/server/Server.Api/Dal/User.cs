@@ -13,6 +13,7 @@ namespace Server.Api.Dal
         public int Id { get; set; }
         public string Name { get; set; }
         public string ProfileId { get; set; }
+        public string Color { get; set; }
 
         [JsonIgnore]
         public List<Booking> Bookings { get; set; }

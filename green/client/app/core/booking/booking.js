@@ -37,6 +37,7 @@
             vm.canUnbook = canUnbook;
             vm.book = book;
             vm.unbook = unbook;
+            vm.slotColor = slotColor;
         }
 
         function initializeBookingSlots() {
@@ -82,6 +83,7 @@
                         if (booking) {
                             bs.title = booking.user.name;
                             bs.profileId = booking.user.profileId;
+                            bs.color = booking.user.color;
                             bs.isBooked = true;
                         }
                     });
@@ -121,6 +123,7 @@
                 bookingSlot.endTime).then(
                     function (response) {
                         toastr.success('Booked!');
+                        loadBookings(vm.selectedDate);
                     }, function (error) {
                         if (error.data.indexOf('MonthlyBookingLimitationReachedException') !== -1) {
                             toastr.error('Booking failed! You can only have a maxmium of 3 bookings per month.');
@@ -139,9 +142,24 @@
                 bookingSlot.endTime).then(
                     function (response) {
                         toastr.success('Unbooked!');
+                        loadBookings(vm.selectedDate);
                     }, function (error) {
                         console.log(error);
                     });
+        }
+
+        function slotColor(bookingSlot) {
+            if (bookingSlot.color) {
+                return {
+                    'background-color': bookingSlot.color,
+                    'color': 'white'
+                };
+            } else {
+                return {
+                    'background-color': 'AliceBlue',
+                    'color': 'black'
+                };
+            }
         }
     }
 

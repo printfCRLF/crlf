@@ -9,11 +9,13 @@ namespace Server.Api.Services
 {
     public class BookingService
     {
+        private ColorService _colorService;
         private GreenContext _context;
         public int MonthlyBookingLimitation { get; set; }
 
         public BookingService(GreenContext greenContext)
         {
+            _colorService = new ColorService();
             _context = greenContext;
             MonthlyBookingLimitation = 3;
         }
@@ -36,8 +38,12 @@ namespace Server.Api.Services
             var userExists = _context.Users.Any(u => u.ProfileId == user.ProfileId);
             if (!userExists)
             {
+                user.Color = _colorService.GetRandom();
                 _context.Users.Add(user);
+                _context.SaveChanges();
             }
+
+            user = _context.Users.First(u => u.ProfileId == user.ProfileId);
 
             var hasBooked3Times = HasBookedNTimes(user, booking, MonthlyBookingLimitation);
             if (hasBooked3Times)

@@ -26,6 +26,7 @@
                         events.push({
                             title: booking.user.name,
                             profileId: booking.user.profileId,
+                            color: booking.user.color,
                             start: booking.startTime,
                             end: booking.endTime
                         });
