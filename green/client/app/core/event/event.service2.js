@@ -10,19 +10,24 @@
         var baseUrl = 'http://localhost:3010/event';
 
         var service = {
-            getAllEvents: getAllEvents
+            getAllEvents: getAllEvents,
+            getEventsByDates: getEventsByDates
         };
         return service;
 
         function getAllEvents() {
-            return $http.get(baseUrl + '/allprivate');
-            //$http.get(baseUrl + '/allprivate').then(function (response) {
-            //    console.log(response);
-            //});
+            return $http.get(baseUrl + '/all');
+        }
 
-            //$http.get('http://localhost:3010/api/private').then(function (response) {
-            //    console.log(response.data.message);
-            //});
+        function getEventsByDates(startDate, endDate) {
+            return $http({
+                url: baseUrl + '/allByDateTime',
+                method: 'POST',
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            });
         }
     }
 })();

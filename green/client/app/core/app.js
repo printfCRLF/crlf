@@ -26,6 +26,7 @@
         'app.profile',
         'app.home',
         'app.calendar',
+        'app.booking',
         'ui.calendar'
     ]);
 })();

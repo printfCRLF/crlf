@@ -23,10 +23,10 @@
         $urlRouterProvider.when('/', '/home');
         //$urlRouterProvider.when('', '/todos/list');
         //$urlRouterProvider.when('/', '/todos/list');
-        $urlRouterProvider.when('/todos', '/todos/list');
-        $urlRouterProvider.when('/todos/', '/todos/list');
-        $urlRouterProvider.when('/mountains', '/mountains/list');
-        $urlRouterProvider.when('/mountains/', '/mountains/list');
+        //$urlRouterProvider.when('/todos', '/todos/list');
+        //$urlRouterProvider.when('/todos/', '/todos/list');
+        //$urlRouterProvider.when('/mountains', '/mountains/list');
+        //$urlRouterProvider.when('/mountains/', '/mountains/list');
 
         // $urlRouterProvider.otherwise('/');
     }
@@ -182,7 +182,7 @@
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'core/home/home.template.html',
+                        templateUrl: 'core/home/home.html',
                         controller: 'HomeController',
                         controllerAs: 'vm'
                     }

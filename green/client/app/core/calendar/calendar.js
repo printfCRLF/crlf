@@ -6,18 +6,23 @@
 
     function calendarDirective() {
         return {
+            restrict: 'EA',
+            scope: {
+                selectedDate: '='
+            },
             templateUrl: 'core/calendar/calendar.html',
             controller: calendarController,
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            bindToController: true
         };
     }
 
-    calendarController.$inject = ['uiCalendarConfig', 'eventService2'];
-    function calendarController(uiCalendarConfig, eventService2) {
+    calendarController.$inject = ['$scope', 'uiCalendarConfig', 'eventService2'];
+    function calendarController($scope, uiCalendarConfig, eventService2) {
         var vm = this;
 
         init();
-        loaded();
+        activate();
 
         function init() {
             vm.events = [];
@@ -29,10 +34,7 @@
             vm.alertOnResize = function () { };
             vm.eventRender = function () { };
 
-            vm.dayClick = function () {
-                console.log('dayClick');
-                printMyCalendar();
-            };
+            vm.dayClick = dayClick;
 
             vm.uiConfig = {
                 calendar: {
@@ -63,7 +65,12 @@
             }
         }
 
-        function loaded() {
+        function dayClick(date, jsEvent, view) {
+            vm.selectedDate = date.format();
+            //printMyCalendar();
+        };
+
+        function activate() {
             eventService2.getAllEvents().then(function (response) {
                 _(response.data).each(function (booking) {
                     vm.events.push({

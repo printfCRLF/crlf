@@ -11,13 +11,14 @@ namespace Server.Api.Controllers
     public class EventController
     {
         private readonly GreenContext _context;
-        
+
         public EventController(GreenContext context)
         {
             _context = context;
         }
 
         [HttpGet]
+        [Authorize]
         [Route("all")]
         public IActionResult All()
         {
@@ -26,18 +27,8 @@ namespace Server.Api.Controllers
             return new JsonResult(bookings);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
-        [Route("allPrivate")]
-        public IActionResult AllPrivate()
-        {
-            var service = new BookingService(_context);
-            var bookings = service.Get();
-            return new JsonResult(bookings);
-        }
-
-        [HttpGet]
-        
         [Route("allByDateTime")]
         public IActionResult AllByDateTime(DateTime startDate, DateTime endDate)
         {
