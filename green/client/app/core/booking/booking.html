@@ -1,49 +1,21 @@
 <div>
-    <ul class="list-unstyled">
+    <div>
+        Slots for {{vm.selectedDate}}
+    </div>
+    <ul class="list-unstyled"
+        ng-repeat="bookingSlot in vm.bookingSlots">
         <li>
             <div class="alert alert-info">
 
                 <!--<b> <input ng-model="e.title"></b>-->
                 <!--{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}-->
                 <div>
-                    <b>Bowen Sui</b>
+                    {{bookingSlot.title}}
                 </div>
-                <span>00:00 - 08:00</span>
+                <span>{{bookingSlot.startTime | date:"HH:mm"}} - {{bookingSlot.endTime | date:"HH:mm"}}</span>
                 <div>
-                    <button>Book</button>
-                    <button>Unbook</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="alert alert-info">
-
-                <!--<b> <input ng-model="e.title"></b>-->
-                <!--{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}-->
-                <div>
-                    <b>Bowen Sui</b>
-                </div>
-                <span>00:00 - 08:00</span>
-                <div>
-                    <button>Book</button>
-                    <button>Unbook</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="alert alert-info">
-
-                <!--<b> <input ng-model="e.title"></b>-->
-                <!--{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}-->
-                <div>
-                    <b>Bowen Sui</b>
-                </div>
-                <span>00:00 - 08:00</span>
-                <div>
-                    <button>Book</button>
-                    <button>Unbook</button>
+                    <button ng-if="vm.canBook(bookingSlot)" ng-click="vm.book(bookingSlot)">Book</button>
+                    <button ng-if="vm.canUnbook(bookingSlot)" ng-click="vm.unbook(bookingSlot)">Unbook</button>
                 </div>
             </div>
         </li>

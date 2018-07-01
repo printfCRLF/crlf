@@ -71,16 +71,12 @@
         };
 
         function activate() {
-            eventService.getAllEvents().then(function (response) {
-                _(response.data).each(function (booking) {
-                    vm.events.push({
-                        title: booking.user.name,
-                        profileId: booking.user.profileId,
-                        start: booking.startTime,
-                        end: booking.endTime
+            eventService.getAllEvents().then(
+                function (events) {
+                    _(events).each(function (event) {
+                        vm.events.push(event);
                     });
                 });
-            });
         }
 
     }

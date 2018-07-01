@@ -88,7 +88,7 @@
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'core/profile/profile.template.html',
+                        templateUrl: 'core/profile/profile.html',
                         controller: 'ProfileController',
                         controllerAs: 'vm'
                     }
