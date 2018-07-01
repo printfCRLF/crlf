@@ -6,9 +6,11 @@
     <div class="row"
          ng-if="vm.auth.isAuthenticated()">
         <my-calendar class="col-lg-8"
-                     selected-date="vm.selectedDate"></my-calendar>
+                     selected-date="vm.selectedDate"
+                     is-dirty="vm.isDirty"></my-calendar>
         <booking class="col-lg-4"
-                 selected-date="vm.selectedDate"></booking>
+                 selected-date="vm.selectedDate"
+                 is-dirty="vm.isDirty"></booking>
     </div>
 </div>
 

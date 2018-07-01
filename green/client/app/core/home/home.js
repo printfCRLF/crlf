@@ -14,6 +14,7 @@
         function init() {
             vm.message = 'Hello from HomeController';
             vm.selectedDate = null;
+            vm.isDirty = false;
             vm.auth = authService;
         }
 

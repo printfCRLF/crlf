@@ -8,6 +8,7 @@
     eventService.$inject = ['$http', '$q'];
     function eventService($http, $q) {
         var baseUrl = 'http://localhost:3010/event';
+        //var baseUrl = 'http://serverapi20180701081712.azurewebsites.net/event';
 
         var service = {
             getAllEvents: getAllEvents,

@@ -8,7 +8,8 @@
         return {
             restrict: 'EA',
             scope: {
-                selectedDate: '='
+                selectedDate: '=',
+                isDirty: '='
             },
             templateUrl: 'core/calendar/calendar.html',
             controller: calendarController,
@@ -22,7 +23,7 @@
         var vm = this;
 
         init();
-        activate();
+        loadData();
 
         function init() {
             vm.events = [];
@@ -56,6 +57,14 @@
 
             vm.eventSources = [vm.events];
 
+            $scope.$watch('vm.isDirty',
+                function (newSelectedDate, oldSelectedDate) {
+                    if (newSelectedDate === true) {
+                        loadData();
+                        vm.isDirty = false;
+                    }
+                });
+
             function printMyCalendar() {
                 console.log(uiCalendarConfig.calendars.myCalendar);
                 vm.cal = uiCalendarConfig.calendars.myCalendar;
@@ -63,6 +72,8 @@
                 vm.cal.fullCalendar('gotoDate', moment());
 
             }
+
+
         }
 
         function dayClick(date, jsEvent, view) {
@@ -70,9 +81,10 @@
             //printMyCalendar();
         };
 
-        function activate() {
+        function loadData() {
             eventService.getAllEvents().then(
                 function (events) {
+                    vm.events.length = 0;
                     _(events).each(function (event) {
                         vm.events.push(event);
                     });

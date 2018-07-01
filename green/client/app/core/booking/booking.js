@@ -6,7 +6,8 @@
         return {
             restrict: 'EA',
             scope: {
-                selectedDate: '='
+                selectedDate: '=',
+                isDirty: '='
             },
             templateUrl: 'core/booking/booking.html',
             controller: bookingController,
@@ -124,6 +125,7 @@
                     function (response) {
                         toastr.success('Booked!');
                         loadBookings(vm.selectedDate);
+                        vm.isDirty = true;
                     }, function (error) {
                         if (error.data.indexOf('MonthlyBookingLimitationReachedException') !== -1) {
                             toastr.error('Booking failed! You can only have a maxmium of 3 bookings per month.');
@@ -143,6 +145,7 @@
                     function (response) {
                         toastr.success('Unbooked!');
                         loadBookings(vm.selectedDate);
+                        vm.isDirty = true;
                     }, function (error) {
                         console.log(error);
                     });

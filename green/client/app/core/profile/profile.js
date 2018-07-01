@@ -30,7 +30,9 @@
         // vm.profile = store.get('profile');
 
         function getMessage() {
-            $http.get('http://localhost:3010/api/public', {
+            var baseUrl = 'http://localhost:3010';
+            //var baseUrl = 'https://serverapi20180701081712.azurewebsites.net';
+            $http.get(baseUrl + '/api/public', {
                 skipAuthorization: true
             }).then(function (response) {
                 vm.message = response.data.message;
@@ -38,7 +40,9 @@
         }
 
         function getSecretMessage() {
-            $http.get('http://localhost:3010/api/private')
+            var baseUrl = 'http://localhost:3010';
+            //var baseUrl = 'https://serverapi20180701081712.azurewebsites.net';
+            $http.get(baseUrl + '/api/private')
                 .then(function (response) {
                     vm.message = response.data.message;
                 });

@@ -32,7 +32,7 @@ namespace Server.Api
                     builder =>
                     {
                         builder
-                        .WithOrigins("http://localhost:8002") 
+                        .WithOrigins("http://localhost:8002", "http://serverapi20180701081712.azurewebsites.net") 
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
