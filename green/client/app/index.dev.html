@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" data-ng-app="app" data-ng-strict-di class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Laundry Booker</title>
+    <base href="/#">
+    <meta name="description" content="Laundry Booker">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="">
+
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.css" />
+
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+</head>
+<body>
+
+    <div class="container">
+        <header data-ui-view="header"></header>
+        <nav data-ui-view="menu" role="navigation"></nav>
+        <section data-ui-view="breadcrumbs"></section>
+        <section data-ui-view="content"></section>
+
+    </div>
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    <script src="build/angularjs-template-x.x.x.min.js></script>
+    -->
+    <!-- Bower scripts: -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+
+    <!--<script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+
+    <script type="text/javascript" src="bower_components/auth0.js/build/auth0.js"></script>
+    <script type="text/javascript" src="bower_components/angular-auth0/dist/angular-auth0.js"></script>
+    <script type=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- jquery, moment, and angular have to get included before fullcalendar -->
+    <!--<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>-->
+    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+
+    <!-- Application scripts: -->
+    <script src="core/app.js"></script>
+    <script src="core/app.run.js"></script>
+    <script src="core/app.routes.js"></script>
+
+    <script src="core/navigation/breadcrumbsController.js"></script>
+    <script src="core/navigation/footerController.js"></script>
+    <script src="core/navigation/headerController.js"></script>
+    <script src="core/navigation/menuController.js"></script>
+
+
+    <script src="core/home/home.js"></script>
+    <script src="core/calendar/calendar.js"></script>
+    <script src="core/booking/booking.js"></script>
+
+    <script src="core/toolbar/toolbar.js"></script>
+    <script src="core/profile/profile.js"></script>
+    <script src="core/auth/auth.service.js"></script>
+    <script src="auth0-variables.js"></script>
+
+    <script src="core/event/event.service.js"></script>
+
+    <script src="common/directives/aboutDirective.js"></script>
+    <script src="common/directives/datepickerDirective.js"></script>
+    <script src="common/constants/constants.js"></script>
+    <script src="common/filters/filters.js"></script>
+</body>
+</html>

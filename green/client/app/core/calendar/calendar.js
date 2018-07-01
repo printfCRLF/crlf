@@ -68,11 +68,8 @@
             function printMyCalendar() {
                 console.log(uiCalendarConfig.calendars.myCalendar);
                 vm.cal = uiCalendarConfig.calendars.myCalendar;
-
                 vm.cal.fullCalendar('gotoDate', moment());
-
             }
-
 
         }
 
@@ -84,9 +81,9 @@
         function loadData() {
             eventService.getAllEvents().then(
                 function (events) {
-                    vm.events.length = 0;
+                    vm.eventSources[0] = [];
                     _(events).each(function (event) {
-                        vm.events.push(event);
+                        vm.eventSources[0].push(event);
                     });
                 });
         }
