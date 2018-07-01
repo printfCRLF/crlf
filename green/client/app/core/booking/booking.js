@@ -15,8 +15,8 @@
         };
     }
 
-    bookingController.$inject = ['$scope', 'uiCalendarConfig', 'eventService2'];
-    function bookingController($scope, uiCalendarConfig, eventService2) {
+    bookingController.$inject = ['$scope', 'uiCalendarConfig', 'eventService'];
+    function bookingController($scope, uiCalendarConfig, eventService) {
         var vm = this;
         init();
 
@@ -40,7 +40,7 @@
         function loadBookings(selectedDate) {
             console.log('selectedDate ' + selectedDate + 'changed, load bookings');
 
-            eventService2.getEventsByDates(selectedDate, selectedDate).then(function (response) {
+            eventService.getEventsByDates(selectedDate, selectedDate).then(function (response) {
 
             });
         }

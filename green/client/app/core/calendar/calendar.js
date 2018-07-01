@@ -17,8 +17,8 @@
         };
     }
 
-    calendarController.$inject = ['$scope', 'uiCalendarConfig', 'eventService2'];
-    function calendarController($scope, uiCalendarConfig, eventService2) {
+    calendarController.$inject = ['$scope', 'uiCalendarConfig', 'eventService'];
+    function calendarController($scope, uiCalendarConfig, eventService) {
         var vm = this;
 
         init();
@@ -71,7 +71,7 @@
         };
 
         function activate() {
-            eventService2.getAllEvents().then(function (response) {
+            eventService.getAllEvents().then(function (response) {
                 _(response.data).each(function (booking) {
                     vm.events.push({
                         title: booking.user.name,

@@ -5,47 +5,29 @@
         .module('app')
         .factory('eventService', eventService);
 
-    eventService.$inject = ['$resource'];
-    function eventService($resource) {
-        var events = [{
-            title: 'Bowen Sui',
-            start: '2018-06-29 00:00:00',
-            end: '2018-06-29 07:59:59',
-            color: 'brown'
-        },
-        {
-            title: 'Mr Green',
-            start: '2018-06-29 00:08:00',
-            end: '2018-06-29 15:59:59',
-            color: 'green'
-        },
-        {
-            title: 'Mr Green',
-            start: '2018-06-27 00:08:00',
-            end: '2018-06-27 15:59:59',
-            color: 'green'
-        }];
-
-        //var baseUrl = 'https://localhost:3010/event';
-        //var res = $resource(baseUrl,
-        //    { action: '@action' },
-        //    {
-        //        all: {
-        //            url: baseUrl + '/all',
-        //            method: 'GET', 
-        //            isArray: true
-        //        }
-        //    });
-
-        //return res;
+    eventService.$inject = ['$http'];
+    function eventService($http) {
+        var baseUrl = 'http://localhost:3010/event';
 
         var service = {
-            getAllEvents: getAllEvents
+            getAllEvents: getAllEvents,
+            getEventsByDates: getEventsByDates
         };
         return service;
 
         function getAllEvents() {
-            return events;
+            return $http.get(baseUrl + '/all');
+        }
+
+        function getEventsByDates(startDate, endDate) {
+            return $http({
+                url: baseUrl + '/allByDateTime',
+                method: 'POST',
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            });
         }
     }
 })();
