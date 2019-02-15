@@ -17,5 +17,8 @@
     "webpack-dev-server": "3.1.14"
   },
   "author": "Bowen Sui",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "webpack-cli": "^3.2.3"
+  }
 }
