@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable, from, interval, BehaviorSubject, ReplaySubject, AsyncSubject } from 'rxjs';
 import { multicast, take, tap, mapTo } from 'rxjs/operators';
+import { MulticastOperator } from 'rxjs/internal/operators/multicast';
 
 @Component({
   selector: 'app-p03-subject',
@@ -69,7 +70,7 @@ export class P03SubjectComponent implements OnInit {
     );
 
     //subscribe subject to source upon connect()
-    const multi = example.pipe(multicast(() => new Subject()));
+    const multi: any = example.pipe(multicast(() => new Subject()));
     /*
       subscribers will share source
       output:
